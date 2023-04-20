@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './App.module.css';
 import { getFooterCopy, getFullYear } from './utils'
-import Notifications from "./Notification";
+import Notifications from "./Notifications";
 import logo from './assets/ALX+PNG.png';
 
 function App() {
@@ -24,10 +24,10 @@ function App() {
                     <p>Let's get started to learn,develop, create and join the Community! </p>
                     <div className={styles.body_btn}>
                         <div className={styles.btn_wrap}>
-                            <button className={styles.button}>
+                            <div className={styles.button}>
                                 Welcome!
 
-                            </button>
+                            </div>
                         </div>
                     </div>
 
