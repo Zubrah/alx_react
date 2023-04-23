@@ -31,7 +31,7 @@ function App() {
                             borderTop: "1px solid #ccc",
                             marginRight: "150px",
                             marginLeft: "200px",
-                            padding: "10px"
+                            padding: "10px",
 
                         }}>
                             <label htmlFor='email'
@@ -52,14 +52,15 @@ function App() {
                             borderTop: "1px solid #ccc",
                             marginRight: "150px",
                             marginLeft: "200px",
-                            padding: "10px"
+                            padding: "10px",
+
                         }}>
                             <label htmlFor='password'
                                 style={{
                                     display: 'flex',
                                     alignItems: 'center',
                                     marginRight: "20px",
-                                    alignContent: 'center'
+                                    alignContent: 'center',
                                 }}>Password:</label>
                             <input type='password' id='password' name='password' style={{ flexGrow: 1, marginLeft: "38px" }} />
                         </div>
