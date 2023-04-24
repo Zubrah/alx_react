@@ -3,7 +3,7 @@ import styles from './App.module.css';
 //import { getFooterCopy, getFullYear } from './utils'
 import Notifications from "./Notifications";
 //import logo from './assets/ALX+PNG.png';
-import Header from './Header/Header';
+import Header from './Header/header';
 import Login from './Login/Login';
 import Footer from './Footer/Footer';
 
