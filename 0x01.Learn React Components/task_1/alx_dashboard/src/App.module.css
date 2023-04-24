@@ -1,0 +1,255 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .column1 {
+    background-image: url('./assets/Learn.jpg');
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    height:100vh;
+    
+    
+    
+    
+  }
+  
+  .column2 {
+    display: flex;
+    overflow-x: hidden;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    
+  }
+
+  /* .app_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    height: 200px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 40px;
+    padding: auto;
+    
+
+  }
+  
+  .app_header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    height: 200px;
+    margin-left: 70px;
+    font-family: 'Nunito', sans-serif;
+   
+  }
+  
+  .logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  } */
+  
+  
+  /* .app_body {
+    position: relative;
+    display: flex;
+    text-align:center;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100vh - 800px);
+    
+  }
+  
+  .app_body p {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-top: 300px;
+    margin-right: 100px;
+    margin-left: 170px;
+    align-items: center;
+    justify-content: center;
+    
+
+  }
+
+  .body_btn {
+    margin-left: 10px;
+
+  }
+
+  .btn_wrap {
+    height: 100%;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 150px;
+    align-items: center;
+    justify-content: center;
+    
+  } */
+  
+  /* .button {
+    min-width: 30px;
+    min-height: 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: whitesmoke;
+    background: #186b9b;
+    background: linear-gradient(90deg, rgb(17, 142, 180) 0%, rgb(13, 123, 170) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 12px 12px 24px rgba(17, 165, 224, 0.64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    } */
+  
+  /* button::before {
+    content: '';
+    border-radius: 1000px;
+    border: 6px solid #186b9b;
+    box-shadow: 0 0 60px rgba(224, 231, 238, 0.65);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
+  }
+  
+  .button:hover, .button:focus {
+    color: #f0f0f2;
+    transform: translateY(-6px);
+  }
+  
+  button:hover::before, button:focus::before {
+    opacity: 1;
+  }
+  
+  button::after {
+    content: '';
+    width: 30px; height: 30px;
+    border-radius: 100%;
+    border: 6px solid #186b9b;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+  }
+  
+  button:hover::after, button:focus::after {
+    animation: none;
+  }   */
+
+  .Notifications {
+    position: absolute;
+    border: 1px solid black;
+    padding: 10px;
+    bottom: 0;
+    right: 30px;
+    left: 70px;
+
+    margin: 80px 0;
+    text-align: center;
+    
+  }
+
+
+
+
+
+  /* .app_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: whitesmoke;
+    padding:1rem;
+    border-top: 1px solid #ccc;
+    margin-top: 470px;
+  }
+
+  .app-footer p {
+    font-size: 1.5rem;
+    margin: 20px;
+  } */
+
+  
+  
+
+  
+ 
+  
+  /* CSS */
+  /* .button_18 {
+    align-items: center;
+    background-color: #186b9b;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+  }
+  
+  .button_8:hover,
+  .button_8:focus { 
+    background-color: #16437E;
+    color: #ffffff;
+  }
+  
+  .button_18:active {
+    background: #09223b;
+    color: rgb(255, 255, 255, .7);
+  }
+  
+  .button_18:disabled { 
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+  } */
