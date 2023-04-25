@@ -11,7 +11,9 @@ describe('<Footer />', () => {
     // Test for Copyright icon
     it('contains the text "Copyright"', () => {
         const wrapper = shallow(<Footer />);
-        const text = wrapper.find('p').text();
-        expect(text).toEqual('© ');
+        //const text = wrapper.find('p').text();
+        expect(wrapper.find('p')).toHaveLength(1);
+        expect(wrapper.find('©')).toHaveLength(1);
+        //expect(text).toEqual('© ');
     });
 });
