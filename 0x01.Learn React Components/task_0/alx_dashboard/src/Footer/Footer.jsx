@@ -9,7 +9,7 @@ const Footer = () => {
         <div className={styles.app_footer}>
             {/* Insert utils fuction here */}
             <p className={styles.button_18}>{getFooterCopy(true)}</p>
-            <p className={styles.button_18}> © {getFullYear()} All Rights Reserved</p>
+            <p className={styles.button_18}> © {getFullYear()}</p>
         </div>
     )
 }
