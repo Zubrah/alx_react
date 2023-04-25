@@ -6,6 +6,8 @@ function NotificationItem({ type, value, html }) {
     //Implement the color properties
     const color = type === 'default' ? 'blue' : 'red';
 
+
+    // return the properties
     return (
         <li data-notification-type={type} style={{ color }}>
             {html ? <div dangerouslySetInnerHTML={html} /> : value}
