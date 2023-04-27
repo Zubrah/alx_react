@@ -43,7 +43,7 @@ Dashboard.propTypes = {
 };
 
 Dashboard.defaultProps = {
-    isLoggedIn: false,
+    isLoggedIn: true,
     displayDrawer: false,
 };
 
