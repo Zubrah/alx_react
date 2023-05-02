@@ -25,6 +25,7 @@ describe('Dashboard', () => {
         expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-courses')).toHaveLength(1);
     });
 
+    // It calls a logOut functions and shows the alert
     it('calls logOut function and shows alert when Ctrl+h are pressed', () => {
         const logOutMock = jest.fn();
         const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => { });
