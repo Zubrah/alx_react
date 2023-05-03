@@ -44,6 +44,11 @@ class Dashboard extends Component {
             this.props.logOut();
         }
     }
+    listCourses = [
+        { id: 1, name: 'ES6', credit: 60 },
+        { id: 2, name: 'Webpack', credit: 20 },
+        { id: 3, name: 'React', credit: 40 }
+    ];
 
     render() {
         const { isLoggedIn, displayDrawer } = this.props;
@@ -70,7 +75,7 @@ class Dashboard extends Component {
                     {/* Body  Section */}
                     {isLoggedIn ?
                         <BodySectionWithMarginBottom title="Course list">
-                            <CourseListWithLogging />
+                            <CourseListWithLogging listCourses={this.listCourses} />
                         </BodySectionWithMarginBottom> :
                         <BodySectionWithMarginBottom title="Log in Access Full Dashboard">
                             <LoginWithLogging />
@@ -78,7 +83,7 @@ class Dashboard extends Component {
 
 
                     <BodySection title="News from the School">
-                        <p>Some random text here</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, adipisci enim! Laudantium numquam quisquam suscipit odit nam. Quibusdam, excepturi? Aspernatur dolorem corrupti iste doloremque harum, laboriosam vitae cum non doloribus.</p>
                     </BodySection>
 
                     {/* Footer Section */}
