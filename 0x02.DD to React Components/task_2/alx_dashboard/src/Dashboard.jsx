@@ -22,7 +22,7 @@ class Dashboard extends Component {
 
     static defaultProps = {
         isLoggedIn: true,
-        displayDrawer: false,
+        displayDrawer: true,
         logOut: () => { },
     }
 
