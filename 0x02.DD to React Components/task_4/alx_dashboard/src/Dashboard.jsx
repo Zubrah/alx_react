@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './Dashboard.module.css';
 import Notifications from './Notifications/Notifications';
 import logo from './assets/ALX+PNG.png';
-import Header from './Header/header';
 import Login from './Login/Login';
 import Footer from './Footer/Footer';
 import CourseList from './CourseList/CourseList';
@@ -44,6 +43,12 @@ class Dashboard extends Component {
             this.props.logOut();
         }
     }
+    // Test to Display list of Courses...
+    listCourses = [
+        { id: 1, name: 'ES6', credit: 60 },
+        { id: 2, name: 'Webpack', credit: 20 },
+        { id: 3, name: 'React', credit: 40 }
+    ];
 
     render() {
         const { isLoggedIn, displayDrawer } = this.props;
@@ -69,13 +74,13 @@ class Dashboard extends Component {
 
                     {/* Body  Section */}
                     <BodySectionWithMarginBottom title="Course list">
-                        <CourseListWithLogging />
+                        <CourseListWithLogging listCourses={this.listCourses} />
                     </BodySectionWithMarginBottom>
                     <BodySectionWithMarginBottom title="Log in Access Full Dashboard">
                         <LoginWithLogging />
                     </BodySectionWithMarginBottom>
                     <BodySection title="News from the School">
-                        <p>Some random text here</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores quidem dolor aperiam magnam esse laudantium temporibus ipsam dolorum rem molestiae, maxime pariatur aliquam, impedit officiis ullam nostrum sapiente animi adipisci.</p>
                     </BodySection>
 
                     {/* Footer Section */}
