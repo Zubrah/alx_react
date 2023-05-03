@@ -1,0 +1,19 @@
+.courseList {
+    width: 90%;
+    border-collapse: collapse;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 70px;
+  }
+  
+  .courseList th,
+  .courseList td {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  
+  .courseList th {
+    background-color: #eee;
+  }
+  
