@@ -42,6 +42,13 @@ class Dashboard extends Component {
         }
     }
 
+    // Create an array of courses
+    listCourses = [
+        { id: 1, name: 'ES6', credit: 60 },
+        { id: 2, name: 'Webpack', credit: 20 },
+        { id: 3, name: 'React', credit: 40 }
+    ];
+
     render() {
         const { isLoggedIn, displayDrawer } = this.props;
         return (
@@ -63,7 +70,8 @@ class Dashboard extends Component {
                     </div>
 
                     {/* Body  Section */}
-                    {isLoggedIn ? <CourseList /> : <Login />}
+                    {/* Modify to Show the list of courses */}
+                    {isLoggedIn ? <CourseList listCourses={this.listCourses} /> : <Login />}
 
                     {/* Footer Section */}
                     <Footer />
