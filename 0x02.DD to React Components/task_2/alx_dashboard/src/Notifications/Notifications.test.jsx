@@ -12,7 +12,7 @@ describe('<Notifications />', () => {
 
     it('renders a list with 3 items when displayDrawer is true', () => {
         const wrapper = shallow(<Notifications displayDrawer />);
-        expect(wrapper.find('ul').children()).toHaveLength(3);
+        expect(ya('ul').children()).toHaveLength(3);
         expect(wrapper.find(NotificationItem)).toHaveLength(3);
     });
 
