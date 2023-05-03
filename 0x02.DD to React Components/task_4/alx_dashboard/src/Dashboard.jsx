@@ -68,10 +68,10 @@ class Dashboard extends Component {
                     </div>
 
                     {/* Body  Section */}
-                    <BodySectionWithMarginBottom>
+                    <BodySectionWithMarginBottom title="Course list">
                         <CourseListWithLogging />
                     </BodySectionWithMarginBottom>
-                    <BodySectionWithMarginBottom>
+                    <BodySectionWithMarginBottom title="Log in Access Full Dashboard">
                         <LoginWithLogging />
                     </BodySectionWithMarginBottom>
                     <BodySection title="News from the School">
