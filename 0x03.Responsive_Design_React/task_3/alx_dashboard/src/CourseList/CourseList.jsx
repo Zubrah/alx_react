@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
         padding: '0.5rem',
         textAlign: 'right',
         border: '1px solid #ccc',
+        '@media (max-width: 900px)': {
+
+        }
     },
 });
 
