@@ -35,6 +35,30 @@ describe('Dashboard', () => {
         expect(logOutMock).toHaveBeenCalled();
         alertMock.mockRestore();
     });
+    it('should set the isLoggedIn state to true when the user logs in', () => {
+        const wrapper = shallow(<Dashboard />);
+        const instance = wrapper.instance();
+        const email = 'user@example.com';
+        const password = 'password';
+
+        instance.logIn(email, password);
+        expect(wrapper.state('user').isLoggedIn).toBe(true);
+    });
+
+    it('should set the isLoggedIn state to false when the user logs out', () => {
+        const wrapper = shallow(<Dashboard />);
+        const instance = wrapper.instance();
+        const email = 'user@example.com';
+        const password = 'password';
+
+        // log in the user first
+        instance.logIn(email, password);
+        expect(wrapper.state('user').isLoggedIn).toBe(true);
+
+        // then log them out
+        instance.logOut();
+        expect(wrapper.state('user').isLoggedIn).toBe(false);
+    });
 }
 
 );
