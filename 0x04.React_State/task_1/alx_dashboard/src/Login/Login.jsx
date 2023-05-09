@@ -166,9 +166,12 @@ class Login extends Component {
         };
     }
 
+    //navigate = useNavigate();
+
     handleLoginSubmit = (e) => {
         e.preventDefault();
         this.setState({ isLoggedIn: true });
+        // for moderation
         console.log("isLoggedIn State : ", this.state.isLoggedIn);
     };
 
@@ -176,9 +179,11 @@ class Login extends Component {
         this.setState({ email: e.target.value }, () => {
             if (this.state.email !== '' && this.state.password !== '') {
                 this.setState({ enableSubmit: true });
+                // for moderation
                 console.log("when Email is true : ", this.state.enableSubmit)
             } else {
                 this.setState({ enableSubmit: false });
+                // for moderation
                 console.log("when  Email is false : ", this.state.enableSubmit)
             }
         });
@@ -188,15 +193,18 @@ class Login extends Component {
         this.setState({ password: e.target.value }, () => {
             if (this.state.email !== '' && this.state.password !== '') {
                 this.setState({ enableSubmit: true });
+                // for moderation
                 console.log("when Pass true change: ", this.state.enableSubmit)
             } else {
                 this.setState({ enableSubmit: false });
+                // for moderation
                 console.log("when Pass false change: ", this.state.enableSubmit)
             }
         });
     };
 
     render() {
+
         const { isLoggedIn, enableSubmit } = this.state;
 
         return (
@@ -231,7 +239,9 @@ class Login extends Component {
                     </div>
                     <div className={css(styles.body_btn)}>
                         <div className={css(styles.btn_wrap)}>
-                            <button className={css(styles.button)} disabled={!enableSubmit}>Sign In</button>
+                            <button className={css(styles.button)}
+                                disabled={!enableSubmit}
+                            >Sign In</button>
                         </div>
                     </div>
                 </form>

@@ -164,14 +164,14 @@ class Dashboard extends Component {
 
     // Adding static props
     static propTypes = {
-        isLoggedIn: PropTypes.bool,
+        //isLoggedIn: PropTypes.bool,
         displayDrawer: PropTypes.bool,
         logOut: PropTypes.func,
     }
 
     //
     static defaultProps = {
-        //isLoggedIn: false,
+        //isLoggedIn: true,
         displayDrawer: false,
         logOut: () => { },
     }
@@ -206,8 +206,7 @@ class Dashboard extends Component {
         this.setState((prevState) => ({
             showNotifications: !prevState.showNotifications,
         }));
-        // const { displayDrawer } = this.props;
-        // this.props.displayDrawer(!displayDrawer);
+
     };
 
 
@@ -219,6 +218,8 @@ class Dashboard extends Component {
         const CourseListWithLogging = WithLogging(CourseList);
         const LoginWithLogging = WithLogging(Login);
         const { showNotifications } = this.state;
+
+        console.log(isLoggedIn)
 
 
 
@@ -245,7 +246,7 @@ class Dashboard extends Component {
                         </div>
 
                         {/* Body  Section */}
-                        {isLoggedIn ?
+                        {this.state.isLoggedIn === true ?
                             <BodySectionWithMarginBottom title="Course list">
                                 <CourseListWithLogging listCourses={this.listCourses} />
                             </BodySectionWithMarginBottom> :
