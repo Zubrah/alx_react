@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { StyleSheet, css } from "aphrodite";
 import CloseButton from '../assets/close-icon.jpeg';
 import { getLatestNotification } from '../utils';
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     },
     Notifications_p: {
         textAlign: 'center',
+        border: 'none',
     },
     closeButton: {
         position: 'absolute',
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Notifications extends PureComponent {
+class Notifications extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,7 +94,7 @@ class Notifications extends PureComponent {
     }
 
     render() {
-        const { displayDrawer, markNotificationAsRead } = this.props;
+        const { displayDrawer, notifications, markNotificationAsRead, handleNotifications } = this.props;
         const { isDrawerOpen } = this.state;
 
         return (
@@ -104,9 +105,9 @@ class Notifications extends PureComponent {
                     onClick={() => {
                         if (window.innerWidth > 900) {
                             console.log('Close button has been clicked');
-                            this.handleDisplayDrawer();
+                            handleNotifications();
                         } else {
-                            this.handleDisplayDrawer();
+                            handleNotifications();
                         }
                     }}
                 >
@@ -118,23 +119,22 @@ class Notifications extends PureComponent {
                 </div>
                 {displayDrawer ? (
                     <ul style={{ display: isDrawerOpen ? 'block' : 'none', padding: '20px', }}>
-                        <NotificationItem
-                            type="urgent"
-                            value="New course available"
-                            markAsRead={markNotificationAsRead}
-                            id={1}
-                        />
-                        <NotificationItem
-                            type="default"
-                            value="New resume available"
-                            markAsRead={markNotificationAsRead}
-                            id={2}
-                        />
-                        <NotificationItem
-                            html={{ __html: getLatestNotification() }}
-                            markAsRead={markNotificationAsRead}
-                            id={3}
-                        />
+                        {notifications.length === 0 ? (
+                            <p className={css(styles.Notifications_p)}>
+                                No new notifications!
+                            </p>
+                        ) : (
+                            notifications.map((notification) => (
+                                <NotificationItem
+                                    key={notification.id}
+                                    id={notification.id}
+                                    type={notification.type}
+                                    value={notification.value}
+                                    html={notification.html}
+                                    markAsRead={markNotificationAsRead} // pass the function as a prop
+                                />
+                            ))
+                        )}
                     </ul>
                 ) : (
                     <p className={css(styles.Notifications_p)}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import styles from './Dashboard.module.css';
 import { StyleSheet, css } from 'aphrodite';
-
+import { getLatestNotification } from '../../utils';
 import Notifications from '../../Notifications/Notifications';
 import logo from '../../assets/ALX+PNG.png';
 //import Header from '../../Header/header';
@@ -181,11 +181,16 @@ class Dashboard extends Component {
         super(props);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
+        //this.handleNotificationClick = this.handleNotificationClick.bind(this);
 
         //Display drawer state to show Notifications
         this.state = {
             showNotifications: false,
-            listNotifications: [],
+            listNotifications: [
+                { id: 1, type: 'default', value: 'New course available' },
+                { id: 2, type: 'urgent', value: 'New resume available' },
+                { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
+            ],
             user: {
                 email: '',
                 password: '',
@@ -214,16 +219,14 @@ class Dashboard extends Component {
 
     // Adding static props
     static propTypes = {
-        //isLoggedIn: PropTypes.bool,
         displayDrawer: PropTypes.bool,
-        //logOut: PropTypes.func,
+
     }
 
-    //
+    //deafult props
     static defaultProps = {
-        //isLoggedIn: true,
         displayDrawer: false,
-        //LogOut: () => { },
+
     }
 
     componentDidMount() {
@@ -249,13 +252,13 @@ class Dashboard extends Component {
     ];
 
 
-    markNotificationAsRead = (id) => {
-        this.setState(prevState => ({
-            listNotifications: prevState.listNotifications.filter(notification => notification.id !== id)
-
-        }));
-
+    markNotificationAsRead(id) {
+        const updatedNotifications = this.state.listNotifications.filter(
+            (listNotifications) => listNotifications.id !== id
+        );
+        this.setState({ listNotifications: updatedNotifications });
     }
+
 
 
 
@@ -266,6 +269,14 @@ class Dashboard extends Component {
         }));
 
     };
+
+    // handleNotificationClick(id) {
+    //     this.context.markNotificationAsRead(id);
+    // }
+
+
+
+
 
     // Login function
     logIn = (email, password) => {
@@ -327,6 +338,7 @@ class Dashboard extends Component {
                                     {showNotifications && <Notifications
                                         displayDrawer={showNotifications}
                                         notifications={listNotifications}
+                                        handleNotifications={this.handleNotifications}
                                         markNotificationAsRead={this.markNotificationAsRead} />}
 
 
