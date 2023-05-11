@@ -11,7 +11,9 @@ const map = Map({
 });
 
 // map2 constant and set the index.
-const map2 = map.set("2", "Benjamin").set("4", "Oliver");
+const map2 = map.withMutations((mutableMap) => {
+  mutableMap.set(2, "Benjamin").set(4, "Oliver");
+});
 
 // export map and map2
 export { map, map2 };
