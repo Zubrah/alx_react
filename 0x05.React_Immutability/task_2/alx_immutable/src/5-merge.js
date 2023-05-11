@@ -1,4 +1,4 @@
-import { List, Map } from "immutable";
+import { List } from "immutable";
 
 // ConcatElement function
 export function concatElements(page1, page2) {

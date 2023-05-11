@@ -1,4 +1,4 @@
-import { Map } from "immutable";
+import { List, Map } from "immutable";
 
 // takes two param page1 and page with thier map object
 export default function mergeDeeplyElements(page1, page2) {
