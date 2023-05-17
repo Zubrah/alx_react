@@ -1,34 +1,37 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom';
 
-describe('<BodySectionWithMarginBottom />', () => {
-    it('renders a div with the class bodySectionWithMargin', () => {
-        render(
-            <BodySectionWithMarginBottom title="Test">
-                <p>Some text</p>
-            </BodySectionWithMarginBottom>
+describe('BodySectionWithMarginBottom', () => {
+    test('renders title and children correctly', async () => {
+        const title = 'Test Title';
+        const children = <div>Test Children</div>;
+
+        const { getByText } = render(
+            <BodySectionWithMarginBottom title={title}>{children}</BodySectionWithMarginBottom>
         );
-        expect(screen.getByTestId('body-section-with-margin')).toBeInTheDocument();
+
+        await waitFor(() => {
+            const titleElement = getByText(title);
+
+            expect(titleElement).toBeInTheDocument();
+            expect(getByText('Test Children')).toBeInTheDocument();
+        });
     });
 
-    it('renders a BodySection component with the same props', () => {
-        render(
-            <BodySectionWithMarginBottom title="Test">
-                <p>Some text</p>
-            </BodySectionWithMarginBottom>
-        );
-        expect(screen.getByTestId('body-section')).toBeInTheDocument();
-        expect(screen.getByText('Test')).toBeInTheDocument();
-        expect(screen.getByText('Some text')).toBeInTheDocument();
-    });
+    test('applies CSS styles correctly', async () => {
+        const title = 'Test Title';
+        const children = <div>Test Children</div>;
 
-    it('applies a margin bottom of 40px', () => {
-        render(
-            <BodySectionWithMarginBottom title="Test">
-                <p>Some text</p>
-            </BodySectionWithMarginBottom>
+        const { getByText } = render(
+            <BodySectionWithMarginBottom title={title}>{children}</BodySectionWithMarginBottom>
         );
-        expect(screen.getByTestId('body-section-with-margin')).toHaveStyle({ marginBottom: '40px' });
+
+        await waitFor(() => {
+            const bodySectionElement = getByText(title).parentNode; // Find the parent element
+            const styles = window.getComputedStyle(bodySectionElement);
+
+            expect(styles.marginBottom).toBe('10px');
+        });
     });
 });

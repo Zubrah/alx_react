@@ -1,65 +1,83 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import CourseListRow from './CourseListRow';
 
 describe('<CourseListRow />', () => {
-    it('renders a header row with the provided text', () => {
+    it('renders a header row with the provided text', async () => {
         render(
             <table>
                 <tbody>
-                    <CourseListRow textFirstCell="Course name" textSecondCell="Credit" isHeader={true} />
+                    <CourseListRow
+                        textFirstCell="Course name"
+                        textSecondCell="Credit"
+                        isHeader={true}
+                    />
                 </tbody>
             </table>
         );
 
-        const headerRow = screen.getByRole('row');
-        const headerCells = screen.getAllByRole('columnheader');
+        const headerRow = await screen.findByRole('row');
+        const headerCells = await screen.findAllByRole('columnheader');
 
-        expect(headerRow).toBeInTheDocument();
-        expect(headerCells).toHaveLength(2);
-        expect(headerCells[0]).toHaveTextContent('Course name');
-        expect(headerCells[1]).toHaveTextContent('Credit');
+        await waitFor(() => {
+            expect(headerRow).toBeInTheDocument();
+            expect(headerCells).toHaveLength(2);
+            expect(headerCells[0]).toHaveTextContent('Course name');
+            expect(headerCells[1]).toHaveTextContent('Credit');
+        });
     });
 
-    it('renders a regular row with the provided text and checkbox', () => {
+    it('renders a regular row with the provided text and checkbox', async () => {
         render(
             <table>
                 <tbody>
-                    <CourseListRow textFirstCell="Math" textSecondCell={3} isHeader={false} />
+                    <CourseListRow
+                        textFirstCell="Math"
+                        textSecondCell={3}
+                        isHeader={false}
+                    />
                 </tbody>
             </table>
         );
 
-        const row = screen.getByRole('row');
-        const cells = screen.getAllByRole('cell');
-        const checkbox = screen.getByRole('checkbox');
+        const row = await screen.findByRole('row');
+        const cells = await screen.findAllByRole('cell');
+        const checkbox = await screen.findByRole('checkbox');
 
-        expect(row).toBeInTheDocument();
-        expect(cells).toHaveLength(2);
-        expect(cells[0]).toHaveTextContent('Math');
-        expect(cells[1]).toHaveTextContent('3');
-        expect(checkbox).toBeInTheDocument();
+        await waitFor(() => {
+            expect(row).toBeInTheDocument();
+            expect(cells).toHaveLength(2);
+            expect(cells[0]).toHaveTextContent('Math');
+            expect(cells[1]).toHaveTextContent('3');
+            expect(checkbox).toBeInTheDocument();
+        });
     });
 
-    it('toggles the checkbox when clicked', () => {
+    it('toggles the checkbox when clicked', async () => {
         render(
             <table>
                 <tbody>
-                    <CourseListRow textFirstCell="Math" textSecondCell={3} isHeader={false} />
+                    <CourseListRow
+                        textFirstCell="Math"
+                        textSecondCell={3}
+                        isHeader={false}
+                    />
                 </tbody>
             </table>
         );
 
-        const checkbox = screen.getByRole('checkbox');
+        const checkbox = await screen.findByRole('checkbox');
 
-        expect(checkbox).not.toBeChecked();
+        await waitFor(() => {
+            expect(checkbox).not.toBeChecked();
 
-        fireEvent.click(checkbox);
+            fireEvent.click(checkbox);
 
-        expect(checkbox).toBeChecked();
+            expect(checkbox).toBeChecked();
 
-        fireEvent.click(checkbox);
+            fireEvent.click(checkbox);
 
-        expect(checkbox).not.toBeChecked();
+            expect(checkbox).not.toBeChecked();
+        });
     });
 });

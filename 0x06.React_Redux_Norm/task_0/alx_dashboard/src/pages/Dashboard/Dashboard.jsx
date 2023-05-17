@@ -197,12 +197,6 @@ class Dashboard extends Component {
                 isLoggedIn: false
             },
 
-
-
-
-
-
-
             // User object Logout function
             logOut: () => {
                 this.setState((prevState) => ({

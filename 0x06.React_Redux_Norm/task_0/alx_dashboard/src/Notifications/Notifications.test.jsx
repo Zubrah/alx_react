@@ -1,8 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Notifications from './Notifications';
-
-//jest.mock('../assets/close-icon.jpeg', () => 'mocked-close-icon.jpeg');
 
 describe('<Notifications />', () => {
     const mockNotifications = [
@@ -24,7 +22,6 @@ describe('<Notifications />', () => {
         );
 
         const notificationItems = screen.getAllByRole('listitem');
-
         expect(notificationItems).toHaveLength(mockNotifications.length);
     });
 
@@ -39,7 +36,6 @@ describe('<Notifications />', () => {
         );
 
         const noNotificationsMessage = screen.getByText('No new notifications!');
-
         expect(noNotificationsMessage).toBeInTheDocument();
     });
 
@@ -54,11 +50,10 @@ describe('<Notifications />', () => {
         );
 
         const noNotificationsMessage = screen.getByText('No new notifications!');
-
         expect(noNotificationsMessage).toBeInTheDocument();
     });
 
-    it('calls the markNotificationAsRead function with the correct id when a notification item is clicked', () => {
+    it('calls the markNotificationAsRead function with the correct id when a notification item is clicked', async () => {
         render(
             <Notifications
                 displayDrawer
@@ -71,10 +66,12 @@ describe('<Notifications />', () => {
         const notificationItem = screen.getByText('Notification 1');
         fireEvent.click(notificationItem);
 
-        expect(mockMarkNotificationAsRead).toHaveBeenCalledWith(1);
+        await waitFor(() => {
+            expect(mockMarkNotificationAsRead).toHaveBeenCalledWith(1);
+        });
     });
 
-    it('calls the handleNotifications function when the close button is clicked', () => {
+    it('calls the handleNotifications function when the close button is clicked', async () => {
         render(
             <Notifications
                 displayDrawer
@@ -87,6 +84,8 @@ describe('<Notifications />', () => {
         const closeButton = screen.getByLabelText('Close');
         fireEvent.click(closeButton);
 
-        expect(mockHandleNotifications).toHaveBeenCalled();
+        await waitFor(() => {
+            expect(mockHandleNotifications).toHaveBeenCalled();
+        });
     });
 });
