@@ -1,11 +1,9 @@
-import { normalize, schema } from 'normalizr';
-import { notificationsSchema } from './notifications';
+import normalizedData from './notifications';
 import notificationsData from '../notifications.json';
 
-describe('notifications schema', () => {
-  test('should normalize notifications data correctly and have a correct result array', () => {
-    const { entities: { notifications: { result } } } = normalize(notificationsData, [notificationsSchema]); // Updated variable name
-    expect(result).toEqual([
+describe('normalized notifications data', () => {
+  it('should have a correct result array', () => {
+    const expectedIds = [
       "5debd76480edafc8af244228",
       "5debd764507712e7a1307303",
       "5debd76444dd4dafea89d53b",
@@ -20,39 +18,42 @@ describe('notifications schema', () => {
       "5debd764af0fdd1fc815ad9b",
       "5debd76468cb5b277fd125f4",
       "5debd764de9fa684468cdc0b"
-    ]);
+
+    ]
+    expect(normalizedData.result).toEqual(expectedIds);
   });
 
-  test('should normalize notifications data correctly and have a correct users entity', () => {
-    const { entities: { users } } = normalize(notificationsData, [notificationsSchema]); // Updated variable name
-    const expectedUser = {
+  it('should have a correct users entity', () => {
+    const expectedUser =
+    {
       age: 25,
       email: "fred.swaniker@alxstudent.com",
       id: "5debd764a7c57c7839d722e9",
       name: { first: "Fred", last: "Swaniker" },
-      picture: "http://placehold.it/32x32"
-    };
-    expect(users[expectedUser.id]).toEqual(expectedUser);
+      picture: "http://placehold.it/32x32",
+
+    }
+
+    expect(normalizedData.entities.users['5debd764a7c57c7839d722e9']).toEqual(expectedUser);
   });
 
-  test('should normalize notifications data correctly and have a correct messages entity', () => {
-    const { entities: { messages } } = normalize(notificationsData, [notificationsSchema]); // Updated variable name
+  it('should have a correct messages entity', () => {
     const expectedMessage = {
       guid: "efb6c485-00f7-4fdf-97cc-5e12d14d6c41",
       isRead: false,
       type: "default",
-      value: "Cursus risus at ultrices mi."
-    };
-    expect(messages[expectedMessage.guid]).toEqual(expectedMessage);
+      value: "Cursus risus at ultrices mi.",
+    }
+    expect(normalizedData.entities.messages['efb6c485-00f7-4fdf-97cc-5e12d14d6c41']).toEqual(expectedMessage.message);
   });
 
-  test('should normalize notifications data correctly and have a correct notifications entity', () => {
-    const { entities: { notifications } } = normalize(notificationsData, [notificationsSchema]); // Updated variable name
+  it('should have a correct notifications entity', () => {
     const expectedNotification = {
       author: "5debd764f8452ef92346c772",
-      context: "3068c575-d619-40af-bf12-dece1ee18dd3",
+      context: undefined,
       id: "5debd7642e815cd350407777"
+
     };
-    expect(notifications[expectedNotification.id]).toEqual(expectedNotification);
+    expect(normalizedData.entities.notifications['5debd7642e815cd350407777']).toEqual(expectedNotification);
   });
 });

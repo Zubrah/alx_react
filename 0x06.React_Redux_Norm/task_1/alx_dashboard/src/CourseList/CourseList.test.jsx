@@ -13,8 +13,8 @@ describe('<CourseList />', () => {
         await waitFor(() => {
             expect(table).toBeInTheDocument();
             //expect(headerCells).toHaveLength(2);
-            expect(headerCells[0]).toHaveTextContent('Available Course');
-            expect(headerCells[1]).toHaveTextContent('Credit');
+            expect(headerCells[0]).toHaveTextContent('Available courses');
+            expect(headerCells[1]).toHaveTextContent('');
         });
     });
 

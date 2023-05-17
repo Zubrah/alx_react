@@ -54,10 +54,8 @@ const styles = StyleSheet.create({
 });
 
 class Header extends React.Component {
-    //static contextType = DashboardContext;
 
     render() {
-        //const { isLoggedIn, user, logOut } = this.context;
 
         return (
             <div className={css(styles.app_header)}>
@@ -65,17 +63,7 @@ class Header extends React.Component {
                     <img src={logo} alt="logo" className={css(styles.logo)} />
                 </div>
                 <h1 className={css(styles.h1)}>School dashboard</h1>
-                {/* {isLoggedIn && (
-                    <div className={css(styles.logoutSection)} id="logoutSection">
-                        <span className={css(styles.email)}>Welcome {user.email}</span>
-                        <span
-                            className={css(styles.logout)}
-                            onClick={() => logOut()}
-                        >
-                            (logout)
-                        </span>
-                    </div>
-                )} */}
+
             </div>
         );
     }
