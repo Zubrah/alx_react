@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1684323995243" clover="3.2.0">
+  <project timestamp="1684323995243" name="All files">
+    <metrics statements="124" coveredstatements="105" conditionals="55" coveredconditionals="39" methods="51" coveredmethods="37" elements="230" coveredelements="181" complexity="0" loc="124" ncloc="124" packages="11" files="18" classes="18"/>
+    <package name="src">
+      <metrics statements="5" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+      <file name="App.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/App.jsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+      <file name="fileMock.js" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/fileMock.js">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="main.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/main.jsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="utils.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/utils.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="3" count="17" type="stmt"/>
+        <line num="8" count="18" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.BodySection">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="BodySection.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/BodySection/BodySection.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="18" type="stmt"/>
+      </file>
+      <file name="BodySectionWithMarginBottom.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/BodySection/BodySectionWithMarginBottom.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.CourseList">
+      <metrics statements="15" coveredstatements="15" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="4"/>
+      <file name="CourseList.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/CourseList/CourseList.jsx">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+      </file>
+      <file name="CourseListRow.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/CourseList/CourseListRow.jsx">
+        <metrics statements="9" coveredstatements="9" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="15" type="stmt"/>
+        <line num="34" count="15" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="38" count="15" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="15" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+        <line num="73" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Footer">
+      <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="Footer.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/Footer/Footer.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="10" type="stmt"/>
+        <line num="74" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.HOC">
+      <metrics statements="6" coveredstatements="6" conditionals="9" coveredconditionals="6" methods="4" coveredmethods="4"/>
+      <file name="WithLogging.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/HOC/WithLogging.jsx">
+        <metrics statements="6" coveredstatements="6" conditionals="9" coveredconditionals="6" methods="4" coveredmethods="4"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="7" type="cond" truecount="2" falsecount="1"/>
+        <line num="10" count="7" type="cond" truecount="2" falsecount="1"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="17" count="14" type="cond" truecount="2" falsecount="1"/>
+        <line num="18" count="14" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Header">
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Header.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/Header/Header.jsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Login">
+      <metrics statements="19" coveredstatements="17" conditionals="8" coveredconditionals="6" methods="7" coveredmethods="7"/>
+      <file name="Login.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/Login/Login.jsx">
+        <metrics statements="19" coveredstatements="17" conditionals="8" coveredconditionals="6" methods="7" coveredmethods="7"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="146" count="10" type="stmt"/>
+        <line num="147" count="10" type="stmt"/>
+        <line num="157" count="10" type="stmt"/>
+        <line num="158" count="1" type="stmt"/>
+        <line num="161" count="1" type="stmt"/>
+        <line num="162" count="1" type="stmt"/>
+        <line num="169" count="10" type="stmt"/>
+        <line num="170" count="2" type="stmt"/>
+        <line num="171" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="172" count="0" type="stmt"/>
+        <line num="176" count="2" type="stmt"/>
+        <line num="183" count="10" type="stmt"/>
+        <line num="184" count="2" type="stmt"/>
+        <line num="185" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="186" count="2" type="stmt"/>
+        <line num="190" count="0" type="stmt"/>
+        <line num="199" count="18" type="stmt"/>
+        <line num="201" count="18" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Notifications">
+      <metrics statements="19" coveredstatements="17" conditionals="12" coveredconditionals="10" methods="8" coveredmethods="6"/>
+      <file name="NotificationItem.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/Notifications/NotificationItem.jsx">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="15" count="19" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="19" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="19" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+      </file>
+      <file name="Notifications.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/Notifications/Notifications.jsx">
+        <metrics statements="13" coveredstatements="11" conditionals="8" coveredconditionals="6" methods="6" coveredmethods="4"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="80" count="7" type="stmt"/>
+        <line num="81" count="7" type="stmt"/>
+        <line num="84" count="7" type="stmt"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="96" count="8" type="stmt"/>
+        <line num="97" count="8" type="stmt"/>
+        <line num="99" count="8" type="stmt"/>
+        <line num="105" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="127" count="17" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Home.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/pages/Home.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="201" count="6" type="stmt"/>
+        <line num="202" count="6" type="stmt"/>
+        <line num="223" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages.Dashboard">
+      <metrics statements="35" coveredstatements="26" conditionals="10" coveredconditionals="4" methods="16" coveredmethods="8"/>
+      <file name="Dashboard.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/pages/Dashboard/Dashboard.jsx">
+        <metrics statements="32" coveredstatements="23" conditionals="10" coveredconditionals="4" methods="15" coveredmethods="8"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="177" count="1" type="stmt"/>
+        <line num="181" count="5" type="stmt"/>
+        <line num="182" count="4" type="stmt"/>
+        <line num="183" count="4" type="stmt"/>
+        <line num="187" count="4" type="stmt"/>
+        <line num="208" count="0" type="stmt"/>
+        <line num="221" count="1" type="stmt"/>
+        <line num="227" count="1" type="stmt"/>
+        <line num="233" count="4" type="stmt"/>
+        <line num="237" count="4" type="stmt"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="242" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="243" count="0" type="stmt"/>
+        <line num="244" count="0" type="stmt"/>
+        <line num="248" count="4" type="stmt"/>
+        <line num="256" count="1" type="stmt"/>
+        <line num="257" count="3" type="stmt"/>
+        <line num="259" count="1" type="stmt"/>
+        <line num="265" count="4" type="stmt"/>
+        <line num="267" count="2" type="stmt"/>
+        <line num="282" count="4" type="stmt"/>
+        <line num="283" count="0" type="stmt"/>
+        <line num="293" count="4" type="stmt"/>
+        <line num="294" count="0" type="stmt"/>
+        <line num="309" count="7" type="stmt"/>
+        <line num="310" count="7" type="stmt"/>
+        <line num="311" count="7" type="stmt"/>
+        <line num="312" count="7" type="stmt"/>
+        <line num="317" count="7" type="stmt"/>
+        <line num="352" count="0" type="stmt"/>
+        <line num="358" count="0" type="stmt"/>
+      </file>
+      <file name="DashboardContext.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/pages/Dashboard/DashboardContext.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.schema">
+      <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="notifications.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x06.React_Redux_Norm/task_2/alx_dashboard/src/schema/notifications.jsx">
+        <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
