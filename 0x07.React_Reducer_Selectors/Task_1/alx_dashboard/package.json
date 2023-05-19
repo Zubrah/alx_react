@@ -15,7 +15,6 @@
     "aphrodite": "^2.4.0",
     "enzyme": "^3.11.0",
     "fetch-mock": "^9.11.0",
-    "immutable": "^4.3.0",
     "node-fetch": "^3.3.1",
     "normalizr": "^3.6.2",
     "prop-types": "^15.8.1",
