@@ -22,8 +22,6 @@ const initialState = {
 
 
 
-
-
 // UI Reducer
 const uiReducer = (state = initialState, action) => {
     switch (action.type) {
