@@ -8,7 +8,7 @@ import {
     LOGOUT,
 } from '../actions/uiActionTypes';
 
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
 
 
@@ -16,11 +16,11 @@ import { Map } from 'immutable';
 
 
 
-const initialState = {
+const initialState = fromJS({
     isNotificationDrawerVisible: false,
     isUserLoggedIn: false,
     user: Map(),
-};
+});
 
 
 
