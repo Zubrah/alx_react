@@ -390,7 +390,7 @@ class Dashboard extends Component {
 //Connect with mapStateToProps
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.uiReducer.isUserLoggedIn,
+        isLoggedIn: state.get(['ui', 'isUserLoggedIn']),
     }
 }
 
