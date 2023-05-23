@@ -388,12 +388,15 @@ class Dashboard extends Component {
 }
 
 //Connect with mapStateToProps
-const mapStateToProps = (state) => ({
-    isLoggedIn: state.uiReducer.isUserLoggedIn,
-});
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.uiReducer.isUserLoggedIn,
+    }
+}
 
 
 
 
 
-export default connect(mapStateToProps(Dashboard));
+export default connect(mapStateToProps)(Dashboard);
+
