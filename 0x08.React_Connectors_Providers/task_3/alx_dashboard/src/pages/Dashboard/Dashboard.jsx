@@ -342,7 +342,7 @@ class Dashboard extends Component {
 
                                     >Your notifications</div>
                                     {showNotifications && <Notifications
-                                        displayDrawer={showNotifications}
+                                        displayDrawer={displayDrawer}
                                         notifications={listNotifications}
                                         handleNotifications={this.handleNotifications}
                                         markNotificationAsRead={this.markNotificationAsRead} />}
