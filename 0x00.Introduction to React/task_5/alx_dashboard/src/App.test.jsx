@@ -27,6 +27,23 @@ describe('App component', () => {
         const schoolName = screen.getByText('School dashboard');
         expect(schoolName).toBeInTheDocument();
     });
+    it('renders a div with the class App-header', () => {
+        render(<App />);
+        const appHeader = screen.getByText('School dashboard').parentElement;
+        expect(appHeader).toHaveClass('mock-app-header');
+    });
+
+    it('renders a div with the class App-body', () => {
+        render(<App />);
+        const appBody = screen.getByText('Login to Access the full Dashboard').parentElement;
+        expect(appBody).toHaveClass('mock-app-body');
+    });
+
+    it('renders a div with the class App-footer', () => {
+        render(<App />);
+        const appFooter = screen.getByText(getFullYear()).parentElement;
+        expect(appFooter).toHaveClass('mock-app-footer');
+    });
 
     it('displays the school logo', () => {
         render(<App />);
