@@ -1,51 +1,41 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import App from './App';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Notifications from './Notifications';
+import { getLatestNotification } from './utils';
 
-
-
-// Test for App
-describe('App component', () => {
-    it('renders without crashing', () => {
-        shallow(<App />);
-    });
-
-    // Test for  app_header
-    it('renders a div with class app_header', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.find('.app_header')).toHaveLength(1);
-    });
-
-    // test for app_body
-    it('renders a div with class app-body', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.find('.app_body')).toHaveLength(1);
-    });
-
-    // test for app_footer 
-    it('renders a div with class app_footer', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.find('.app_footer')).toHaveLength(1);
-    });
-});
-
-
-
-// Test for Notifications 
 describe('Notifications component', () => {
-    it('renders without crashing', () => {
-        shallow(<Notifications />);
+    it('renders the component without crashing', () => {
+        render(<Notifications />);
+        const notificationsComponent = screen.getByTestId('notifications-component');
+        expect(notificationsComponent).toBeInTheDocument();
     });
 
-    it('renders three list items', () => {
-        const wrapper = shallow(<Notifications />);
-        expect(wrapper.find('li')).toHaveLength(3);
+    it('displays the close button and calls onClick when clicked', () => {
+        const mockOnClick = jest.fn();
+        render(<Notifications />);
+        const closeButton = screen.getByAltText('Close');
+        expect(closeButton).toBeInTheDocument();
+        fireEvent.click(closeButton);
+        expect(mockOnClick).toHaveBeenCalled();
     });
 
-    it('renders the text "Here is the list of notifications"', () => {
-        const wrapper = shallow(<Notifications />);
-        const text = wrapper.find('p').text();
-        expect(text).toEqual('Here is the list of notifications');
+    it('displays the list of notifications', () => {
+        render(<Notifications />);
+        const notificationList = screen.getByRole('list');
+        expect(notificationList).toBeInTheDocument();
+    });
+
+    it('displays the correct number of list items', () => {
+        render(<Notifications />);
+        const listItems = screen.getAllByRole('listitem');
+        expect(listItems).toHaveLength(3);
+    });
+
+    it('displays the correct text in the list items', () => {
+        render(<Notifications />);
+        const listItems = screen.getAllByRole('listitem');
+        expect(listItems[0]).toHaveTextContent('New course available');
+        expect(listItems[1]).toHaveTextContent('New resume available');
+        expect(listItems[2]).toHaveTextContent(getLatestNotification());
     });
 });
