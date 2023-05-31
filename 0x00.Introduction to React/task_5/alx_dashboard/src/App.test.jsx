@@ -1,41 +1,68 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Notifications from './Notifications';
-import { getLatestNotification } from './utils';
+import { render, screen } from '@testing-library/react';
+import App from './App';
+import { getFooterCopy, getFullYear } from './utils';
 
-describe('Notifications component', () => {
+jest.mock('./App.module.css', () => ({
+    container: 'mock-container',
+    column1: 'mock-column1',
+    column2: 'mock-column2',
+    app_header: 'mock-app-header',
+    logo: 'mock-logo',
+    app_body: 'mock-app-body',
+    body_btn: 'mock-body-btn',
+    btn_wrap: 'mock-btn-wrap',
+    button: 'mock-button',
+    app_footer: 'mock-app-footer',
+    button_18: 'mock-button-18',
+}));
+
+jest.mock('./assets/ALX+PNG.png', () => 'mock-logo-image');
+
+jest.mock('./Notifications', () => () => <div data-testid="mock-notifications" />);
+
+describe('App component', () => {
     it('renders the component without crashing', () => {
-        render(<Notifications />);
-        const notificationsComponent = screen.getByTestId('notifications-component');
+        render(<App />);
+        const schoolName = screen.getByText('School dashboard');
+        expect(schoolName).toBeInTheDocument();
+    });
+
+    it('displays the school logo', () => {
+        render(<App />);
+        const logo = screen.getByAltText('logo');
+        expect(logo).toBeInTheDocument();
+    });
+
+    it('displays the school name in the header', () => {
+        render(<App />);
+        const schoolName = screen.getByText('School dashboard');
+        expect(schoolName).toBeInTheDocument();
+    });
+
+    it('displays the login form', () => {
+        render(<App />);
+        const emailInput = screen.getByLabelText('Email Address:');
+        const passwordInput = screen.getByLabelText('Password:');
+        const signInButton = screen.getByText('Sign In');
+
+        expect(emailInput).toBeInTheDocument();
+        expect(passwordInput).toBeInTheDocument();
+        expect(signInButton).toBeInTheDocument();
+    });
+
+    it('displays the notifications component', () => {
+        render(<App />);
+        const notificationsComponent = screen.getByTestId('mock-notifications');
         expect(notificationsComponent).toBeInTheDocument();
     });
 
-    it('displays the close button and calls onClick when clicked', () => {
-        const mockOnClick = jest.fn();
-        render(<Notifications />);
-        const closeButton = screen.getByAltText('Close');
-        expect(closeButton).toBeInTheDocument();
-        fireEvent.click(closeButton);
-        expect(mockOnClick).toHaveBeenCalled();
-    });
+    it('displays the footer with the correct text', () => {
+        render(<App />);
+        const footerCopy = screen.getByText(getFooterCopy(true));
+        const currentYear = screen.getByText(getFullYear());
 
-    it('displays the list of notifications', () => {
-        render(<Notifications />);
-        const notificationList = screen.getByRole('list');
-        expect(notificationList).toBeInTheDocument();
-    });
-
-    it('displays the correct number of list items', () => {
-        render(<Notifications />);
-        const listItems = screen.getAllByRole('listitem');
-        expect(listItems).toHaveLength(3);
-    });
-
-    it('displays the correct text in the list items', () => {
-        render(<Notifications />);
-        const listItems = screen.getAllByRole('listitem');
-        expect(listItems[0]).toHaveTextContent('New course available');
-        expect(listItems[1]).toHaveTextContent('New resume available');
-        expect(listItems[2]).toHaveTextContent(getLatestNotification());
+        expect(footerCopy).toBeInTheDocument();
+        expect(currentYear).toBeInTheDocument();
     });
 });
