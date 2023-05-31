@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1685533219268" clover="3.2.0">
-  <project timestamp="1685533219268" name="All files">
-    <metrics statements="7" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="4" elements="15" coveredelements="10" complexity="0" loc="7" ncloc="7" packages="1" files="5" classes="5"/>
+<coverage generated="1685534099133" clover="3.2.0">
+  <project timestamp="1685534099133" name="All files">
+    <metrics statements="8" coveredstatements="5" conditionals="4" coveredconditionals="2" methods="11" coveredmethods="5" elements="23" coveredelements="12" complexity="0" loc="8" ncloc="8" packages="1" files="5" classes="5"/>
     <file name="App.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x00.Introduction to React/task_5/alx_dashboard/src/App.jsx">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <line num="8" count="9" type="stmt"/>
     </file>
     <file name="Notifications.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x00.Introduction to React/task_5/alx_dashboard/src/Notifications.jsx">
-      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <line num="9" count="0" type="stmt"/>
+      <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="1"/>
+      <line num="9" count="4" type="stmt"/>
       <line num="25" count="0" type="stmt"/>
+      <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
     </file>
     <file name="fileMock.js" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x00.Introduction to React/task_5/alx_dashboard/src/fileMock.js">
       <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
