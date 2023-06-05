@@ -1,19 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
+import { getFooterCopy, getFullYear } from '../utils';
 
-// Test for Footer without crashing
-describe('<Footer />', () => {
-    it('renders without crashing', () => {
-        shallow(<Footer />);
+jest.mock('../utils', () => ({
+    getFooterCopy: jest.fn(),
+    getFullYear: jest.fn(),
+}));
+
+jest.mock('./Footer.module.css', () => ({
+    app_footer: 'mock-app-footer',
+    button_18: 'mock-button-18',
+}));
+
+describe('Footer component', () => {
+    beforeEach(() => {
+        getFooterCopy.mockReturnValue('Sample footer copy');
+        getFullYear.mockReturnValue(2023);
     });
 
-    // Test for Copyright icon
-    it('contains the text "Copyright"', () => {
-        const wrapper = shallow(<Footer />);
-        //const text = wrapper.find('p').text();
-        expect(wrapper.find('p')).toHaveLength(1);
-        expect(wrapper.find('©')).toHaveLength(1);
-        //expect(text).toEqual('© ');
+    it('renders the footer with correct text', () => {
+        render(<Footer />);
+        const footerCopy = screen.getByText('Sample footer copy');
+        const currentYear = screen.getByText('© 2023');
+        expect(footerCopy).toBeInTheDocument();
+        expect(currentYear).toBeInTheDocument();
     });
 });
