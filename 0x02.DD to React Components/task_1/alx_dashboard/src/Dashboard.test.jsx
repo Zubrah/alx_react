@@ -2,12 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Dashboard from './Dashboard';
 
-// Mock CSS module
 jest.mock('./Dashboard.module.css', () => ({
-    'App-body': 'mocked-app-body',
-    'App-body-content': 'mocked-app-body-content',
-    'App-body-content-school-info': 'mocked-app-body-content-school-info',
-    'App-body-content-courses': 'mocked-app-body-content-courses',
+    container: 'mocked-container',
+    column1: 'mocked-column1',
+    column2: 'mocked-column2',
+    header: 'mocked-header',
+    logo: 'mocked-logo',
+    menuItem: 'mocked-menuItem',
 }));
 
 describe('Dashboard', () => {
@@ -15,16 +16,31 @@ describe('Dashboard', () => {
         render(<Dashboard />);
     });
 
-    test('renders a header and a footer', () => {
+    test('renders header section with logo and title', () => {
         render(<Dashboard />);
-        expect(screen.getByRole('banner')).toBeInTheDocument();
-        expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+        expect(screen.getByAltText('logo')).toBeInTheDocument();
+        expect(screen.getByRole('heading', { level: 1, name: /school dashboard/i })).toBeInTheDocument();
     });
 
-    test('renders three sections', () => {
+    test('renders notifications section', () => {
         render(<Dashboard />);
-        expect(screen.getByTestId('school-info-section')).toBeInTheDocument();
-        expect(screen.getByTestId('courses-section')).toBeInTheDocument();
+        expect(screen.getByText('Your notifications')).toBeInTheDocument();
+        expect(screen.getByTestId('notifications-section')).toBeInTheDocument();
+    });
+
+    test('renders course list section when logged in', () => {
+        render(<Dashboard isLoggedIn={true} />);
+        expect(screen.getByTestId('course-list-section')).toBeInTheDocument();
+    });
+
+    test('renders login section when not logged in', () => {
+        render(<Dashboard isLoggedIn={false} />);
+        expect(screen.getByTestId('login-section')).toBeInTheDocument();
+    });
+
+    test('renders footer section', () => {
+        render(<Dashboard />);
+        expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     });
 
     test('calls logOut function and shows alert when Ctrl+h is pressed', () => {

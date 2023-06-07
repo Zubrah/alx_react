@@ -13,7 +13,7 @@ class Dashboard extends Component {
         super(props);
         this.handleKeyDown = this.handleKeyDown.bind(this);
     }
-
+    å
     static propTypes = {
         isLoggedIn: PropTypes.bool,
         displayDrawer: PropTypes.bool,
