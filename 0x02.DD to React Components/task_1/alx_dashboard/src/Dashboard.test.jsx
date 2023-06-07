@@ -1,40 +1,45 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import Dashboard from './Dashboard';
 
+// Mock CSS module
+jest.mock('./Dashboard.module.css', () => ({
+    'App-body': 'mocked-app-body',
+    'App-body-content': 'mocked-app-body-content',
+    'App-body-content-school-info': 'mocked-app-body-content-school-info',
+    'App-body-content-courses': 'mocked-app-body-content-courses',
+}));
 
-
-//Implement test for Dashboard.jsx file
 describe('Dashboard', () => {
-    it('renders without crashing', () => {
-        shallow(<Dashboard />);
+    test('renders without crashing', () => {
+        render(<Dashboard />);
     });
 
-    //renders header and footer 
-    it('renders a header and a footer', () => {
-        const wrapper = shallow(<Dashboard />);
-        expect(wrapper.find('Header')).toHaveLength(1);
-        expect(wrapper.find('Footer')).toHaveLength(1);
+    test('renders a header and a footer', () => {
+        render(<Dashboard />);
+        expect(screen.getByRole('banner')).toBeInTheDocument();
+        expect(screen.getByRole('contentinfo')).toBeInTheDocument();
     });
 
-    it('renders three sections', () => {
-        const wrapper = shallow(<Dashboard />);
-        expect(wrapper.find('div.App-body')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-school-info')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-courses')).toHaveLength(1);
+    test('renders three sections', () => {
+        render(<Dashboard />);
+        expect(screen.getByTestId('school-info-section')).toBeInTheDocument();
+        expect(screen.getByTestId('courses-section')).toBeInTheDocument();
     });
 
-    // It calls a logOut functions and shows the alert
-    it('calls logOut function and shows alert when Ctrl+h are pressed', () => {
+    test('calls logOut function and shows alert when Ctrl+h is pressed', () => {
         const logOutMock = jest.fn();
         const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => { });
-        const wrapper = shallow(<Dashboard logOut={logOutMock} />);
-        wrapper.instance().handleKeyDown({ ctrlKey: true, key: 'h' });
+        render(<Dashboard logOut={logOutMock} />);
+        const body = screen.getByTestId('dashboard-body');
+        body.dispatchEvent(
+            new KeyboardEvent('keydown', {
+                ctrlKey: true,
+                key: 'h',
+            })
+        );
         expect(alertMock).toHaveBeenCalledWith('Logging you out');
         expect(logOutMock).toHaveBeenCalled();
         alertMock.mockRestore();
     });
-}
-
-);
+});

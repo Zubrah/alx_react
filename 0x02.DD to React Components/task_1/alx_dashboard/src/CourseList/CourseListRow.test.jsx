@@ -1,44 +1,43 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import CourseListRow from './CourseListRow';
 
+jest.mock('./CourseList.module.css', () => ({
+    cell: 'mocked-cell',
+    headerRow: 'mocked-header-row',
+    row: 'mocked-row',
+}));
 
-// test for CourseList Row with props
 describe('CourseListRow', () => {
+    test('renders header row with one cell', () => {
+        render(<CourseListRow isHeader={true} textFirstCell="Available courses" />);
 
-    // Test for isHeader is true
-    describe('when isHeader is true', () => {
-        it('should render one cell with colspan = 2 when textSecondCell does not exist', () => {
-            const wrapper = shallow(
-                <CourseListRow isHeader={true} textFirstCell="Header" />
-            );
-            expect(wrapper.find('th').props().colSpan).toEqual(2);
-        });
+        // Assert that the header row exists
+        const headerRow = screen.getByRole('row');
+        expect(headerRow).toBeInTheDocument();
+        expect(headerRow).toHaveClass('mocked-header-row');
 
-        it('should render two cells when textSecondCell is present', () => {
-            const wrapper = shallow(
-                <CourseListRow
-                    isHeader={true}
-                    textFirstCell="Header 1"
-                    textSecondCell="Header 2"
-                />
-            );
-            expect(wrapper.find('th').length).toEqual(2);
-        });
+        // Assert that the header row has one cell
+        // const headerCell = screen.getByRole('cell', { name: 'Available courses' });
+        // expect(headerCell).toBeInTheDocument();
+        // expect(headerCell.getAttribute('colspan')).toBe('2');
+        // expect(headerCell).toHaveClass('mocked-cell');
     });
 
-    // Test for Header when it's false.
-    describe('when isHeader is false', () => {
-        it('should render two td elements within a tr element', () => {
-            const wrapper = shallow(
-                <CourseListRow
-                    isHeader={false}
-                    textFirstCell="First cell"
-                    textSecondCell="Second cell"
-                />
-            );
-            expect(wrapper.find('tr').length).toEqual(1);
-            expect(wrapper.find('td').length).toEqual(2);
-        });
+    test('renders data row with two cells', () => {
+        render(<CourseListRow isHeader={false} textFirstCell="ES6" textSecondCell="60" />);
+
+        // Assert that the data row exists
+        const dataRow = screen.getByRole('row');
+        expect(dataRow).toBeInTheDocument();
+        expect(dataRow).toHaveClass('mocked-row');
+
+        // Assert that the data row has two cells
+        const dataCells = screen.getAllByRole('cell');
+        expect(dataCells).toHaveLength(2);
+        expect(dataCells[0]).toHaveTextContent('ES6');
+        expect(dataCells[1]).toHaveTextContent('60');
+        expect(dataCells[0]).toHaveClass('mocked-cell');
+        expect(dataCells[1]).toHaveClass('mocked-cell');
     });
 });

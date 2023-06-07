@@ -1,27 +1,29 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Notifications from './Notifications';
+import { render, waitFor } from '@testing-library/react';
 import NotificationItem from './NotificationItem';
 
+// Mock CSS module
+jest.mock('', () => ({
+    default: 'mocked-default-class',
+    red: 'mocked-red-class',
+    blue: 'mocked-blue-class',
+}));
 
-// Test for Notification Component
-describe('Notifications', () => {
-    it('renders without crashing', () => {
-        const wrapper = shallow(<Notifications />);
-        expect(wrapper.exists()).toBe(true);
-    });
+describe('NotificationItem', () => {
+    it('renders the notification item with urgent type and HTML content', async () => {
+        const props = {
+            type: 'urgent',
+            value: '',
+            html: { __html: '<strong>New resume available</strong>' },
+        };
 
-    // Renders NotificationItem elements 
-    it('renders NotificationItem elements', () => {
-        const wrapper = shallow(<Notifications />);
-        expect(wrapper.find(NotificationItem)).toHaveLength(3);
-    });
+        const { getByText, getByRole } = render(<NotificationItem {...props} />);
+        const notificationItem = getByRole('listitem');
 
-    // Renders the correct html in the first NotificationItem element
-    it('renders the correct html in the first NotificationItem element', () => {
-        const wrapper = shallow(<Notifications />);
-        const firstItem = wrapper.find(NotificationItem).at(0);
-        expect(firstItem.html()).toContain('<li data-notification-type="default"');
-        expect(firstItem.html()).toContain('style="color:blue;">New course available</li>');
+        await waitFor(() => {
+            expect(notificationItem).toBeInTheDocument();
+            expect(notificationItem).toHaveAttribute('data-notification-type', 'urgent');
+            expect(notificationItem).toHaveStyle('color: red');
+        });
     });
 });
