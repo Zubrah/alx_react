@@ -1,19 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import Header from './header';
 
+jest.mock('./Header.module.css', () => ({
+    app_header: 'mock-app-header',
+    logo: 'mock-logo',
+}));
 
-// Test for header without crashing
-describe('Header', () => {
-    it('should render without crashing', () => {
-        shallow(<Header />);
+describe('Header component', () => {
+    it('renders the header with correct text', () => {
+        render(<Header />);
+        const headerText = screen.getByText('School dashboard');
+        expect(headerText).toBeInTheDocument();
     });
+    it('renders the logo inside the header section', () => {
+        render(<Header />);
+        const logo = screen.getByRole('img');
+        expect(logo).toBeInTheDocument();
 
-
-    // must have one img and h1 tags
-    it('should render img and h1 tags', () => {
-        const wrapper = shallow(<Header />);
-        expect(wrapper.find('img')).toHaveLength(1);
-        expect(wrapper.find('h1')).toHaveLength(1);
     });
 });
