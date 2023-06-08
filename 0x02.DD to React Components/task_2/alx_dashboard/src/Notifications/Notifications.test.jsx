@@ -1,38 +1,53 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Notifications from './Notifications';
-import NotificationItem from './NotificationItem';
 
-describe('<Notifications />', () => {
-    it('renders an empty list when displayDrawer is false', () => {
-        const wrapper = shallow(<Notifications displayDrawer={false} />);
-        expect(wrapper.find('ul').children()).toHaveLength(0);
-        expect(wrapper.find('p').text()).toEqual('No new notifications!');
+jest.mock('../utils', () => ({
+    getLatestNotification: jest.fn().mockReturnValue('Latest Notification'),
+}));
+
+describe('Notifications', () => {
+    test('renders notifications when displayDrawer is true', () => {
+        render(<Notifications displayDrawer={true} />);
+
+        const notificationItems = screen.getAllByRole('listitem');
+        expect(notificationItems).toHaveLength(3);
+
+        expect(screen.getByText('New course available')).toBeInTheDocument();
+        expect(screen.getByText('New resume available')).toBeInTheDocument();
+        expect(screen.getByText('Latest Notification')).toBeInTheDocument();
     });
 
-    it('renders a list with 3 items when displayDrawer is true', () => {
-        const wrapper = shallow(<Notifications displayDrawer />);
-        expect(ya('ul').children()).toHaveLength(3);
-        expect(wrapper.find(NotificationItem)).toHaveLength(3);
+    test('renders "No new notifications!" when displayDrawer is false', () => {
+        render(<Notifications displayDrawer={false} />);
+
+        const noNotificationsMessage = screen.getByText('No new notifications!');
+        expect(noNotificationsMessage).toBeInTheDocument();
     });
 
-    it('calls markAsRead function when NotificationItem is clicked', () => {
+    test('calls markAsRead function when a notification item is clicked', () => {
         const mockMarkAsRead = jest.fn();
-        const wrapper = shallow(
-            <Notifications displayDrawer markAsRead={mockMarkAsRead} />
+
+        render(
+            <Notifications displayDrawer={true} markAsRead={mockMarkAsRead} />
         );
 
-        // Find the first NotificationItem and simulate a click event
-        wrapper
-            .find(NotificationItem)
-            .at(0)
-            .simulate('click');
+        const notificationItem = screen.getByText('New course available');
+        fireEvent.click(notificationItem);
 
         expect(mockMarkAsRead).toHaveBeenCalledWith(1);
     });
 
-    it('checks if the component renders correctly', () => {
-        const wrapper = shallow(<Notifications />);
-        expect(wrapper.exists()).toBe(true);
+    test('calls console.log when close button is clicked', () => {
+        const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+
+        render(<Notifications displayDrawer={true} />);
+
+        const closeButton = screen.getByLabelText('Close');
+        fireEvent.click(closeButton);
+
+        expect(consoleSpy).toHaveBeenCalledWith('Close button has been clicked');
+
+        consoleSpy.mockRestore();
     });
 });

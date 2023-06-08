@@ -1,40 +1,83 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Dashboard from './Dashboard';
 
+jest.mock('./Notifications/Notifications', () => ({
+    __esModule: true,
+    default: jest.fn().mockReturnValue(<div>Mocked Notifications</div>),
+}));
+jest.mock('./Dashboard.module.css', () => ({
+    container: 'mocked-container',
+    column1: 'mocked-column1',
+    column2: 'mocked-column2',
+    header: 'mocked-header',
+    logo: 'mocked-logo',
+    menuItem: 'mocked-menuItem',
+}));
 
-
-//Implement test for Dashboard.jsx file
 describe('Dashboard', () => {
-    it('renders without crashing', () => {
-        shallow(<Dashboard />);
+    test('renders Dashboard with login and notifications', () => {
+        render(<Dashboard isLoggedIn={true} displayDrawer={true} />);
+
+        const logo = screen.getByAltText('logo');
+        expect(logo).toBeInTheDocument();
+
+        const notifications = screen.getByText('Mocked Notifications');
+        expect(notifications).toBeInTheDocument();
+
+        const courseList = screen.getByRole('list');
+        expect(courseList).toBeInTheDocument();
+
+        const loginComponent = screen.queryByRole('textbox');
+        expect(loginComponent).not.toBeInTheDocument();
+
+        const footer = screen.getByText('Footer');
+        expect(footer).toBeInTheDocument();
     });
 
-    //renders header and footer 
-    it('renders a header and a footer', () => {
-        const wrapper = shallow(<Dashboard />);
-        expect(wrapper.find('Header')).toHaveLength(1);
-        expect(wrapper.find('Footer')).toHaveLength(1);
+    test('renders Dashboard with login and without notifications', () => {
+        render(<Dashboard isLoggedIn={true} displayDrawer={false} />);
+
+        const logo = screen.getByAltText('logo');
+        expect(logo).toBeInTheDocument();
+
+        const notifications = screen.queryByText('Mocked Notifications');
+        expect(notifications).not.toBeInTheDocument();
+
+        const courseList = screen.getByRole('list');
+        expect(courseList).toBeInTheDocument();
+
+        const loginComponent = screen.queryByRole('textbox');
+        expect(loginComponent).not.toBeInTheDocument();
+
+        const footer = screen.getByText('Footer');
+        expect(footer).toBeInTheDocument();
     });
 
-    it('renders three sections', () => {
-        const wrapper = shallow(<Dashboard />);
-        expect(wrapper.find('div.App-body')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-school-info')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-courses')).toHaveLength(1);
+    test('renders Dashboard without login', () => {
+        render(<Dashboard isLoggedIn={false} displayDrawer={true} />);
+
+        const logo = screen.getByAltText('logo');
+        expect(logo).toBeInTheDocument();
+
+        const notifications = screen.getByText('Mocked Notifications');
+        expect(notifications).toBeInTheDocument();
+
+        const courseList = screen.queryByRole('list');
+        expect(courseList).not.toBeInTheDocument();
+
+        const loginComponent = screen.getByRole('textbox');
+        expect(loginComponent).toBeInTheDocument();
+
+        const footer = screen.getByText('Footer');
+        expect(footer).toBeInTheDocument();
     });
 
-    // It calls a logOut functions and shows the alert
-    it('calls logOut function and shows alert when Ctrl+h are pressed', () => {
+    test('calls logOut function when Ctrl+h is pressed', () => {
         const logOutMock = jest.fn();
-        const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => { });
-        const wrapper = shallow(<Dashboard logOut={logOutMock} />);
-        wrapper.instance().handleKeyDown({ ctrlKey: true, key: 'h' });
-        expect(alertMock).toHaveBeenCalledWith('Logging you out');
-        expect(logOutMock).toHaveBeenCalled();
-        alertMock.mockRestore();
-    });
-}
+        render(<Dashboard isLoggedIn={true} displayDrawer={true} logOut={logOutMock} />);
 
-);
+        fireEvent.keyDown(document, { key: 'h', ctrlKey: true });
+        expect(logOutMock).toHaveBeenCalled();
+    });
+});

@@ -20,7 +20,6 @@ function Home() {
                     </div>
                     <h1>School dashboard</h1>
                 </div>
-
                 {/* Body  Section */}
                 <div className={styles.app_body}>
                     <p>Let's get started to learn,develop, create and join the Community! </p>
