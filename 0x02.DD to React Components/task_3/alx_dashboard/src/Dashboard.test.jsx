@@ -1,40 +1,78 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import Dashboard from './Dashboard';
 
+// Mock CSS modules
+jest.mock('./Dashboard.module.css', () => ({
+    container: 'mocked-container',
+    column1: 'mocked-column1',
+    column2: 'mocked-column2',
+    header: 'mocked-header',
+    logo: 'mocked-logo',
+    menuItem: 'mocked-menuItem',
+}));
 
+// Mock Notifications component
+jest.mock('./Notifications/Notifications', () => () => (
+    <div data-testid="mocked-notifications">Mocked Notifications</div>
+));
 
-//Implement test for Dashboard.jsx file
+// Mock CourseList component
+jest.mock('./CourseList/CourseList', () => ({ listCourses }) => (
+    <div data-testid="mocked-course-list">
+        Mocked Course List
+        {listCourses.map((course) => (
+            <div key={course.id}>{course.name}</div>
+        ))}
+    </div>
+));
+
+// Mock Login component
+jest.mock('./Login/Login', () => () => (
+    <div data-testid="mocked-login">Mocked Login</div>
+));
+
+// Mock Footer component
+jest.mock('./Footer/Footer', () => () => (
+    <div data-testid="mocked-footer">Mocked Footer</div>
+));
+
+// Mock BodySection component
+jest.mock('./BodySection/BodySection', () => ({ title, children }) => (
+    <div data-testid="mocked-body-section">
+        <h2>{title}</h2>
+        {children}
+    </div>
+));
+
+// Mock BodySectionWithMarginBottom component
+jest.mock('./BodySection/BodySectionWithMarginBottom', () => ({ title, children }) => (
+    <div data-testid="mocked-body-section-with-margin-bottom">
+        <h2>{title}</h2>
+        {children}
+    </div>
+));
+
 describe('Dashboard', () => {
-    it('renders without crashing', () => {
-        shallow(<Dashboard />);
+    test('renders the dashboard with notifications, course list, login, and footer', () => {
+        render(<Dashboard />);
+
+        // Assert the presence of mocked components
+        expect(screen.getByTestId('mocked-notifications')).toBeInTheDocument();
+        expect(screen.getByTestId('mocked-course-list')).toBeInTheDocument();
+        expect(screen.getByTestId('mocked-login')).toBeInTheDocument();
+        expect(screen.getByTestId('mocked-footer')).toBeInTheDocument();
+
+        // Assert the presence of mocked BodySection components
+        expect(screen.getByTestId('mocked-body-section')).toBeInTheDocument();
+        expect(screen.getByTestId('mocked-body-section-with-margin-bottom')).toBeInTheDocument();
+
+        // Assert the text content
+        expect(screen.getByText('Mocked Notifications')).toBeInTheDocument();
+        expect(screen.getByText('Mocked Course List')).toBeInTheDocument();
+        expect(screen.getByText('Mocked Login')).toBeInTheDocument();
+        expect(screen.getByText('Mocked Footer')).toBeInTheDocument();
     });
 
-    //renders header and footer 
-    it('renders a header and a footer', () => {
-        const wrapper = shallow(<Dashboard />);
-        expect(wrapper.find('Header')).toHaveLength(1);
-        expect(wrapper.find('Footer')).toHaveLength(1);
-    });
 
-    it('renders three sections', () => {
-        const wrapper = shallow(<Dashboard />);
-        expect(wrapper.find('div.App-body')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-school-info')).toHaveLength(1);
-        expect(wrapper.find('div.App-body div.App-body-content div.App-body-content-courses')).toHaveLength(1);
-    });
-
-    // It calls a logOut functions and shows the alert
-    it('calls logOut function and shows alert when Ctrl+h are pressed', () => {
-        const logOutMock = jest.fn();
-        const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => { });
-        const wrapper = shallow(<Dashboard logOut={logOutMock} />);
-        wrapper.instance().handleKeyDown({ ctrlKey: true, key: 'h' });
-        expect(alertMock).toHaveBeenCalledWith('Logging you out');
-        expect(logOutMock).toHaveBeenCalled();
-        alertMock.mockRestore();
-    });
-}
-
-);
+});

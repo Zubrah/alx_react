@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1686214668368" clover="3.2.0">
+  <project timestamp="1686214668368" name="All files">
+    <metrics statements="44" coveredstatements="29" conditionals="20" coveredconditionals="16" methods="26" coveredmethods="15" elements="90" coveredelements="60" complexity="0" loc="44" ncloc="44" packages="6" files="10" classes="10"/>
+    <package name="src">
+      <metrics statements="16" coveredstatements="3" conditionals="6" coveredconditionals="2" methods="9" coveredmethods="3"/>
+      <file name="Dashboard.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/Dashboard.jsx">
+        <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+      </file>
+      <file name="fileMock.js" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/fileMock.js">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="utils.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/utils.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="8" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.CourseList">
+      <metrics statements="10" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="2"/>
+      <file name="CourseList.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/CourseList/CourseList.jsx">
+        <metrics statements="5" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+      </file>
+      <file name="CourseListRow.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/CourseList/CourseListRow.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Footer">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="Footer.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/Footer/Footer.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Header">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="Header.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/Header/Header.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Login">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Login.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/Login/Login.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Notifications">
+      <metrics statements="10" coveredstatements="9" conditionals="8" coveredconditionals="8" methods="10" coveredmethods="6"/>
+      <file name="NotificationItem.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/Notifications/NotificationItem.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="5" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+      </file>
+      <file name="Notifications.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x02.DD to React Components/task_3/alx_dashboard/src/Notifications/Notifications.jsx">
+        <metrics statements="5" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="4"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="63" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+  </project>
+</coverage>
