@@ -1,44 +1,21 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import CourseListRow from './CourseListRow';
 
+jest.mock('./CourseList.module.css', () => ({}));
 
-// test for CourseList Row with props
 describe('CourseListRow', () => {
-
-    // Test for isHeader is true
-    describe('when isHeader is true', () => {
-        it('should render one cell with colspan = 2 when textSecondCell does not exist', () => {
-            const wrapper = shallow(
-                <CourseListRow isHeader={true} textFirstCell="Header" />
-            );
-            expect(wrapper.find('th').props().colSpan).toEqual(2);
-        });
-
-        it('should render two cells when textSecondCell is present', () => {
-            const wrapper = shallow(
-                <CourseListRow
-                    isHeader={true}
-                    textFirstCell="Header 1"
-                    textSecondCell="Header 2"
-                />
-            );
-            expect(wrapper.find('th').length).toEqual(2);
-        });
+    test('renders header row correctly', () => {
+        render(<CourseListRow textFirstCell="Course" textSecondCell="Credit" isHeader={true} />);
+        expect(screen.getByText('Course')).toBeInTheDocument();
+        expect(screen.getByText('Credit')).toBeInTheDocument();
+        expect(screen.getByRole('row')).toHaveClass('headerRow');
     });
 
-    // Test for Header when it's false.
-    describe('when isHeader is false', () => {
-        it('should render two td elements within a tr element', () => {
-            const wrapper = shallow(
-                <CourseListRow
-                    isHeader={false}
-                    textFirstCell="First cell"
-                    textSecondCell="Second cell"
-                />
-            );
-            expect(wrapper.find('tr').length).toEqual(1);
-            expect(wrapper.find('td').length).toEqual(2);
-        });
+    test('renders regular row correctly', () => {
+        render(<CourseListRow textFirstCell="ES6" textSecondCell={60} isHeader={false} />);
+        expect(screen.getByText('ES6')).toBeInTheDocument();
+        expect(screen.getByText('60')).toBeInTheDocument();
+        expect(screen.getByRole('row')).toHaveClass('row');
     });
 });

@@ -1,19 +1,33 @@
 .courseList {
-    width: 90%;
-    border-collapse: collapse;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 70px;
-  }
-  
-  .courseList th,
-  .courseList td {
-    padding: 0.5rem;
-    text-align: left;
-    border: 1px solid #ccc;
-  }
-  
-  .courseList th {
-    background-color: #eee;
-  }
-  
+  width: 90%;
+  border-collapse: collapse;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 70px;
+}
+
+.courseList th,
+.courseList td {
+  padding: 0.5rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.courseList th {
+  background-color: #eee;
+}
+
+.courseList .headerRow th:nth-child(2),
+.courseList .headerRow td:nth-child(2) {
+  background-color: #deb5b545;
+}
+
+.courseList .headerRow th:nth-child(3),
+.courseList .headerRow td:nth-child(3) {
+  background-color: #deb5b545;
+}
+
+
+.courseList th:nth-child(2) {
+  text-align: right;
+}

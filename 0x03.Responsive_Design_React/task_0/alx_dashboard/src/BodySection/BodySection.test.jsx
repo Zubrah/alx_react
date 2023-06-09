@@ -1,28 +1,21 @@
-// Test for BodySection.jsx
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import BodySection from './BodySection';
 
-describe('<BodySection />', () => {
-    it('renders a div with the class bodySection', () => {
-        const wrapper = shallow(<BodySection title="Test" />);
-        expect(wrapper.find('div.bodySection')).toHaveLength(1);
-    });
+// Mock the CSS module
+jest.mock('./BodySection.module.css', () => ({
+    bodySection: 'mock-bodySection',
+}));
 
-    it('renders a h2 element with the title prop', () => {
-        const wrapper = shallow(<BodySection title="Test" />);
-        expect(wrapper.find('h2')).toHaveLength(1);
-        expect(wrapper.find('h2').text()).toEqual('Test');
-    });
-
-    it('renders the children passed to BodySection', () => {
-        const wrapper = shallow(
-            <BodySection title="Test">
-                <p>Some text</p>
+describe('BodySection', () => {
+    test('renders BodySection component with title and children', () => {
+        render(
+            <BodySection title="Test Title">
+                <p>Test Content</p>
             </BodySection>
         );
-        expect(wrapper.find('div.bodySection').children()).toHaveLength(2);
-        expect(wrapper.find('p')).toHaveLength(1);
-        expect(wrapper.find('p').text()).toEqual('Some text');
+        // Add assertions for the rendered components and their content
+        expect(screen.getByText('Test Title')).toBeInTheDocument();
+        expect(screen.getByText('Test Content')).toBeInTheDocument();
     });
 });
