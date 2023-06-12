@@ -1,17 +1,38 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import Login from './Login';
 
-// renders Login without crashing
-describe('<Login />', () => {
-    it('renders without crashing', () => {
-        shallow(<Login />);
+// Mock the aphrodite module
+jest.mock('aphrodite', () => ({
+    StyleSheet: {
+        create: jest.fn(() => ({})),
+    },
+    css: jest.fn(() => ''),
+}));
+
+describe('Login', () => {
+    it('renders the email and password input fields', () => {
+        render(
+            <BrowserRouter>
+                <Login />
+            </BrowserRouter>
+        );
+
+        expect(screen.getByLabelText('Email Address:')).toBeInTheDocument();
+        expect(screen.getByLabelText('Password:')).toBeInTheDocument();
     });
 
-    // Renders two inputs and labels 
-    it('renders two input and two label tags', () => {
-        const wrapper = shallow(<Login />);
-        expect(wrapper.find('input')).toHaveLength(2);
-        expect(wrapper.find('label')).toHaveLength(2);
+    it('navigates to the dashboard on Sign In button click', () => {
+        const { container } = render(
+            <BrowserRouter>
+                <Login />
+            </BrowserRouter>
+        );
+
+        const signInButton = container.querySelector('button');
+        fireEvent.click(signInButton);
+
+        expect(window.location.pathname).toBe('/dashboard');
     });
 });

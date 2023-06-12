@@ -36,12 +36,27 @@ const styles = StyleSheet.create({
 });
 
 class Notifications extends Component {
-    markAsRead(id) {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            readNotifications: [],
+        }
+    }
+
+
+
+    markAsRead = (id) => {
+
+        this.setState({
+            readNotifications: [...this.state.readNotifications, id],
+        });
         console.log(`Notification ${id} has been marked as read`);
     }
 
     render() {
         const { displayDrawer } = this.props;
+        const { readNotifications } = this.state;
 
         return (
             <div className={css(styles.Notifications)}>

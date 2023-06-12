@@ -9,20 +9,33 @@ function NotificationItem({ type, value, html, markAsRead, id }) {
     };
 
     return (
-        <li data-notification-type={type} style={{ color }} onClick={handleClick}>
-            {html ? <div dangerouslySetInnerHTML={html} /> : value}
+        <li
+            data-notification-type={type}
+            style={{ color }}
+            onClick={handleClick}
+        >
+            {html ? <div dangerouslySetInnerHTML={{ __html: html }} /> : value}
         </li>
     );
 }
 
 NotificationItem.propTypes = {
-    type: PropTypes.string,
+    type: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.shape({
+            __html: PropTypes.string.isRequired,
+        }).isRequired,
+    ]),
     value: PropTypes.string,
-    html: PropTypes.shape({
-        __html: PropTypes.string,
-    }),
-    markAsRead: PropTypes.func,
-    id: PropTypes.number,
+    html: PropTypes.oneOfType([
+        PropTypes.shape({
+            __html: PropTypes.string.isRequired,
+        }),
+        PropTypes.string,
+    ]),
+    markAsRead: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
 };
+
 
 export default React.memo(NotificationItem);

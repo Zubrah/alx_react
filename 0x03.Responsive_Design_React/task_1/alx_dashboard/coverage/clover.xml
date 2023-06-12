@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1686558823593" clover="3.2.0">
+  <project timestamp="1686558823593" name="All files">
+    <metrics statements="29" coveredstatements="25" conditionals="10" coveredconditionals="6" methods="10" coveredmethods="8" elements="49" coveredelements="39" complexity="0" loc="29" ncloc="29" packages="3" files="5" classes="5"/>
+    <package name="src">
+      <metrics statements="16" coveredstatements="12" conditionals="6" coveredconditionals="2" methods="6" coveredmethods="4"/>
+      <file name="Dashboard.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x03.Responsive_Design_React/task_1/alx_dashboard/src/Dashboard.jsx">
+        <metrics statements="16" coveredstatements="12" conditionals="6" coveredconditionals="2" methods="6" coveredmethods="4"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="84" count="4" type="stmt"/>
+        <line num="85" count="3" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
+        <line num="110" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="115" count="3" type="stmt"/>
+        <line num="122" count="3" type="stmt"/>
+        <line num="123" count="3" type="stmt"/>
+        <line num="124" count="3" type="stmt"/>
+        <line num="125" count="3" type="stmt"/>
+      </file>
+      <file name="fileMock.js" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x03.Responsive_Design_React/task_1/alx_dashboard/src/fileMock.js">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.BodySection">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="BodySection.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x03.Responsive_Design_React/task_1/alx_dashboard/src/BodySection/BodySection.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="10" type="stmt"/>
+      </file>
+      <file name="BodySectionWithMarginBottom.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x03.Responsive_Design_React/task_1/alx_dashboard/src/BodySection/BodySectionWithMarginBottom.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Notifications">
+      <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+      <file name="NotificationItem.jsx" path="/Users/zubrahmsemo/Desktop/ALX_REACT/0x03.Responsive_Design_React/task_1/alx_dashboard/src/Notifications/NotificationItem.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="5" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="19" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="11" count="19" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

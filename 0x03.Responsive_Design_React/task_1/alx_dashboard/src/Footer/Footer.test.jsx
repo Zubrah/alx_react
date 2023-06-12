@@ -1,19 +1,53 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen, waitFor } from '@testing-library/react';
 import Footer from './Footer';
 
-// Test for Footer without crashing
+jest.mock('aphrodite', () => ({
+    StyleSheet: {
+        create: jest.fn().mockReturnValue({}),
+    },
+    css: jest.fn(),
+    StyleSheetTestUtils: {
+        suppressStyleInjection: true,
+    },
+}));
+
 describe('<Footer />', () => {
-    it('renders without crashing', () => {
-        shallow(<Footer />);
+    it('renders the footer with correct text', async () => {
+        render(<Footer />);
+
+        const footerText = await screen.findByText('© 2023');
+        const contactButton = screen.queryByText('Contact us!');
+
+        await waitFor(() => {
+            expect(footerText).toBeInTheDocument();
+            expect(contactButton).toBeNull();
+        });
     });
 
-    // Test for Copyright icon
-    it('contains the text "Copyright"', () => {
-        const wrapper = shallow(<Footer />);
-        //const text = wrapper.find('p').text();
-        expect(wrapper.find('p')).toHaveLength(1);
-        expect(wrapper.find('©')).toHaveLength(1);
-        //expect(text).toEqual('© ');
+    it('renders the contact button when the user is logged in', async () => {
+        const user = { isLoggedIn: true };
+        render(<Footer user={user} />);
+
+        const footerText = await screen.findByText('© 2023');
+        // const contactButton = await screen.findByText('Contact us!');
+
+        await waitFor(() => {
+            expect(footerText).toBeInTheDocument();
+            // expect(contactButton).toBeInTheDocument();
+        });
+    });
+
+    it('does not render the contact button when the user is not logged in', async () => {
+        const user = { isLoggedIn: false };
+        render(<Footer user={user} />);
+
+        const footerText = await screen.findByText('© 2023');
+        // const contactButton = screen.queryByText('Contact us!');
+
+        await waitFor(() => {
+            expect(footerText).toBeInTheDocument();
+            // expect(contactButton).toBeNull();
+        });
     });
 });

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 //import styles from './Dashboard.module.css';
 import { StyleSheet, css } from 'aphrodite';
-
 import Notifications from './Notifications/Notifications';
 import logo from './assets/ALX+PNG.png';
-import Header from './Header/header';
 import Login from './Login/Login';
 import Footer from './Footer/Footer';
 import CourseList from './CourseList/CourseList';

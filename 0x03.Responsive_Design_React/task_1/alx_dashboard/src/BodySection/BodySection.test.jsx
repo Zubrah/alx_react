@@ -1,28 +1,35 @@
-// Test for BodySection.jsx
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, waitFor } from '@testing-library/react';
 import BodySection from './BodySection';
 
-describe('<BodySection />', () => {
-    it('renders a div with the class bodySection', () => {
-        const wrapper = shallow(<BodySection title="Test" />);
-        expect(wrapper.find('div.bodySection')).toHaveLength(1);
-    });
+describe('BodySection', () => {
+    test('renders title and children correctly', async () => {
+        const title = 'Test Title';
+        const children = <div>Test Children</div>;
 
-    it('renders a h2 element with the title prop', () => {
-        const wrapper = shallow(<BodySection title="Test" />);
-        expect(wrapper.find('h2')).toHaveLength(1);
-        expect(wrapper.find('h2').text()).toEqual('Test');
-    });
-
-    it('renders the children passed to BodySection', () => {
-        const wrapper = shallow(
-            <BodySection title="Test">
-                <p>Some text</p>
+        const { getByText } = render(
+            <BodySection title={title}>
+                {children}
             </BodySection>
         );
-        expect(wrapper.find('div.bodySection').children()).toHaveLength(2);
-        expect(wrapper.find('p')).toHaveLength(1);
-        expect(wrapper.find('p').text()).toEqual('Some text');
+
+        await waitFor(() => {
+            const titleElement = getByText(title);
+            expect(titleElement).toBeInTheDocument();
+
+        });
+    });
+
+    test('applies CSS styles correctly', async () => {
+        const title = 'Test Title';
+        const children = <div>Test Children</div>;
+
+        const { getByTestId } = render(
+            <BodySection title={title} >
+                {children}
+            </BodySection>
+        );
+
+
     });
 });

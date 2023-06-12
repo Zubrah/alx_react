@@ -1,35 +1,39 @@
-// Implement tests for BodySectionWithMarginBottom.jsx
 import React from 'react';
-import { shallow } from 'enzyme';
-import BodySection from '../BodySection/BodySection';
+import { render } from '@testing-library/react';
 import BodySectionWithMarginBottom from './BodySectionWithMarginBottom';
 
-describe('<BodySectionWithMarginBottom />', () => {
-    it('renders a div with the class bodySectionWithMargin', () => {
-        const wrapper = shallow(
-            <BodySectionWithMarginBottom title="Test">
-                <p>Some text</p>
-            </BodySectionWithMarginBottom>
-        );
-        expect(wrapper.find('div.bodySectionWithMargin')).toHaveLength(1);
+jest.mock('aphrodite', () => ({
+    StyleSheet: {
+        create: jest.fn(() => ({
+            bodySectionWithMargin: 'mocked-body-section-with-margin',
+        })),
+    },
+    css: jest.fn((styles) => styles),
+}));
+
+describe('BodySectionWithMarginBottom', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
     });
 
-    it('renders a BodySection component with the same props', () => {
-        const wrapper = shallow(
-            <BodySectionWithMarginBottom title="Test">
-                <p>Some text</p>
-            </BodySectionWithMarginBottom>
+    it('renders with the correct title and children', () => {
+        const title = 'Test Title';
+        const children = <div>Test Children</div>;
+
+        const { getByText } = render(
+            <BodySectionWithMarginBottom title={title}>{children}</BodySectionWithMarginBottom>
         );
-        expect(wrapper.find(BodySection)).toHaveLength(1);
-        expect(wrapper.find(BodySection).props()).toEqual({ title: 'Test', children: <p>Some text</p> });
+
+        const titleElement = getByText(title);
+        const childrenElement = getByText('Test Children');
+
+        expect(titleElement).toBeInTheDocument();
+        expect(childrenElement).toBeInTheDocument();
     });
 
-    it('applies a margin bottom of 40px', () => {
-        const wrapper = shallow(
-            <BodySectionWithMarginBottom title="Test">
-                <p>Some text</p>
-            </BodySectionWithMarginBottom>
-        );
-        expect(wrapper.find('div.bodySectionWithMargin').prop('style')).toEqual({ marginBottom: '40px' });
+    it('applies the mocked CSS class', () => {
+        render(<BodySectionWithMarginBottom title="Title">Children</BodySectionWithMarginBottom>);
+
+        expect(document.querySelector('.mocked-body-section-with-margin')).toBeInTheDocument();
     });
 });

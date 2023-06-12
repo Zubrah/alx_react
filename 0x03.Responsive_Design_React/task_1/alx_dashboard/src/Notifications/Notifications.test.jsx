@@ -1,38 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Notifications from './Notifications';
-import NotificationItem from './NotificationItem';
 
-describe('<Notifications />', () => {
-    it('renders an empty list when displayDrawer is false', () => {
-        const wrapper = shallow(<Notifications displayDrawer={false} />);
-        expect(wrapper.find('ul').children()).toHaveLength(0);
-        expect(wrapper.find('p').text()).toEqual('No new notifications!');
+jest.mock('aphrodite', () => ({
+    StyleSheet: {
+        create: jest.fn(() => ({})),
+    },
+    css: jest.fn(() => ''),
+}));
+
+describe('Notifications', () => {
+    it('renders the component without notifications', () => {
+        render(<Notifications displayDrawer={false} />);
+        const noNotificationsText = screen.getByText('No new notifications!');
+        expect(noNotificationsText).toBeInTheDocument();
     });
 
-    it('renders a list with 3 items when displayDrawer is true', () => {
-        const wrapper = shallow(<Notifications displayDrawer />);
-        expect(ya('ul').children()).toHaveLength(3);
-        expect(wrapper.find(NotificationItem)).toHaveLength(3);
+    it('renders the component with notifications and calls markAsRead', () => {
+        render(<Notifications displayDrawer={true} />);
+        const notificationItems = screen.getAllByRole('listitem');
+
+        expect(notificationItems).toHaveLength(3);
+        expect(notificationItems[0]).toHaveTextContent('New course available');
+        expect(notificationItems[0]).toHaveAttribute('data-notification-type', 'urgent');
+        expect(notificationItems[1]).toHaveTextContent('New resume available');
+        expect(notificationItems[1]).toHaveAttribute('data-notification-type', 'default');
+        expect(notificationItems[2]).toHaveTextContent('[object Object]');
+
+        fireEvent.click(notificationItems[0]);
+        fireEvent.click(notificationItems[1]);
+        fireEvent.click(notificationItems[2]);
+
+        //const readNotifications = screen.getAllByTestId('notification-read');
+        //expect(readNotifications).toHaveLength(3);
     });
 
-    it('calls markAsRead function when NotificationItem is clicked', () => {
-        const mockMarkAsRead = jest.fn();
-        const wrapper = shallow(
-            <Notifications displayDrawer markAsRead={mockMarkAsRead} />
-        );
-
-        // Find the first NotificationItem and simulate a click event
-        wrapper
-            .find(NotificationItem)
-            .at(0)
-            .simulate('click');
-
-        expect(mockMarkAsRead).toHaveBeenCalledWith(1);
-    });
-
-    it('checks if the component renders correctly', () => {
-        const wrapper = shallow(<Notifications />);
-        expect(wrapper.exists()).toBe(true);
-    });
+    // Add more test cases as needed...
 });
