@@ -1,43 +1,62 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import Footer from './Footer';
 
-describe('<Footer />', () => {
-    it('renders the footer with correct text', async () => {
-        render(<Footer />);
+// Mock Redux store
+const initialState = {
+    user: {
+        isLoggedIn: true,
+    },
+};
 
-        const footerText = await screen.findByText('© 2023');
-        const contactButton = screen.queryByText('Contact us!');
+const reducer = (state = initialState) => state;
+const store = createStore(reducer);
 
-        await waitFor(() => {
-            expect(footerText).toBeInTheDocument();
-            expect(contactButton).toBeNull();
-        });
+// Mock aphrodite styles
+jest.mock('aphrodite', () => ({
+    StyleSheet: {
+        create: jest.fn(() => ({})),
+    },
+    css: jest.fn(() => ''),
+}));
+
+describe('Footer', () => {
+    it('renders the footer component', () => {
+        render(
+            <Provider store={store}>
+                <Footer />
+            </Provider>
+        );
+
+        // Assert that the footer content is rendered
+        //expect(screen.getByText(/Footer Text/i)).toBeInTheDocument();
+        expect(screen.getByText(/Contact us!/i)).toBeInTheDocument();
+        expect(screen.getByText(/© \d{4}/i)).toBeInTheDocument();
     });
 
-    it('renders the contact button when user is logged in', async () => {
-        const user = { isLoggedIn: true };
-        render(<Footer user={user} />);
+    it('renders the contact button when user is logged in', () => {
+        render(
+            <Provider store={store}>
+                <Footer />
+            </Provider>
+        );
 
-        const footerText = await screen.findByText('© 2023');
-        //const contactButton = await screen.findByText('Contact us!');
-
-        await waitFor(() => {
-            expect(footerText).toBeInTheDocument();
-            //expect(contactButton).toBeInTheDocument();
-        });
+        // Assert that the contact button is rendered
+        expect(screen.getByText(/Contact us!/i)).toBeInTheDocument();
     });
 
-    it('does not render the contact button when user is not logged in', async () => {
-        const user = { isLoggedIn: false };
-        render(<Footer user={user} />);
+    it('does not render the contact button when user is not logged in', () => {
+        const store = createStore(() => ({ user: { isLoggedIn: false } }));
 
-        const footerText = await screen.findByText('© 2023');
-        //const contactButton = screen.queryByText('Contact us!');
+        render(
+            <Provider store={store}>
+                <Footer />
+            </Provider>
+        );
 
-        await waitFor(() => {
-            expect(footerText).toBeInTheDocument();
-            //expect(contactButton).toBeNull();
-        });
+        // Assert that the contact button is not rendered
+        expect(screen.queryByText(/Contact us!/i)).toBeNull();
     });
 });

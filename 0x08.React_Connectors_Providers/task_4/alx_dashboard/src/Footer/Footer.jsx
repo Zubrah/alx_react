@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 import { getFooterCopy, getFullYear } from '../utils';
-
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
     appFooter: {
@@ -70,40 +70,34 @@ const styles = StyleSheet.create({
     },
 });
 
-const Footer = ({ isUserLoggedIn }) => {
-
+const Footer = ({ user }) => {
     const handleContactUs = () => {
         // handle the "Contact us!" click event
     };
 
-
-
     return (
         <div className={css(styles.appFooter)}>
             <p className={css(styles.button18)}>{getFooterCopy(true)}</p>
-            {isUserLoggedIn && (
+            {user.isLoggedIn && (
                 <p className={css(styles.button18)} onClick={handleContactUs}>
                     Contact us!
                 </p>
             )}
             <p className={css(styles.button18)}>© {getFullYear()}</p>
         </div>
-    )
-
+    );
 };
 
-// Connect with mapStateToProps
-export const mapStateToProps = (state) => {
+Footer.propTypes = {
+    user: PropTypes.shape({
+        isLoggedIn: PropTypes.bool.isRequired,
+    }).isRequired,
+};
+
+const mapStateToProps = (state) => {
     return {
-        isUserLoggedIn: state.getIn(['ui', 'isUserLoggedIn']),
-        displayDrawer: state.getIn(['ui', 'isNotificationDrawerVisible']),
+        user: state.user, // Assuming the user state is stored under "user" key in the Redux state
     };
 };
 
-// Connect the Footer component with mapStateToProps
 export default connect(mapStateToProps)(Footer);
-
-
-
-
-
