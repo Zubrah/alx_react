@@ -15,9 +15,6 @@ import WithLogging from '../../HOC/WithLogging';
 import backgroundImage from '../../assets/Learn.jpg';
 import DashboardContext from './DashboardContext';
 import { connect } from 'react-redux';
-import { displayNotificationDrawer, hideNotificationDrawer } from '../../actions/uiActions';
-
-
 
 
 
