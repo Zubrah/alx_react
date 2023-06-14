@@ -3,26 +3,25 @@ import { createRoot } from 'react-dom/client';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import thunk from 'redux-thunk'; // Import the redux-thunk middleware
+import thunk from 'redux-thunk';
 import App from './App';
-import uiReducer from '../src/reducers/uiReducer';
+import rootReducer from '../src/reducers/rootReducer'; // Import the root reducer
 
 // Create the Redux store using configureStore
 const store = configureStore({
-  reducer: uiReducer,
+  reducer: rootReducer, // Use the root reducer
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
         extraArgument: {},
       },
-      serializableCheck: false, // Disable the serializable check for non-serializable values
-      immutableStateInvariant: true, // Enable the immutable state invariant check
+      serializableCheck: false,
+      immutableStateInvariant: true,
     }),
 });
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* Provide the Redux store to the App component */}
     <Provider store={store}>
       <BrowserRouter>
         <App />

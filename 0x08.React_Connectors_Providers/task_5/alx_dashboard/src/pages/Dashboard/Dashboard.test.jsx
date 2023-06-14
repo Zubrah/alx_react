@@ -3,12 +3,12 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { fromJS } from 'immutable';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import uiReducer from '../../reducers/uiReducer';
+import { rootReducer } from '../../reducers/rootReducer'; // Import the root reducer
 import Dashboard, { mapStateToProps } from './Dashboard';
 
 // Create a mock store
 const store = configureStore({
-    reducer: uiReducer,
+    reducer: rootReducer,
 });
 
 describe('Dashboard Component', () => {
@@ -34,11 +34,11 @@ describe('Dashboard Component', () => {
         fireEvent.click(notificationsButton);
 
         await waitFor(() => {
-            //const notification1 = screen.getByText('New course available');
-            //const notification2 = screen.getByText('New resume available');
+            // const notification1 = screen.getByText('New course available');
+            // const notification2 = screen.getByText('New resume available');
 
-            //expect(notification1).toBeInTheDocument();
-            //expect(notification2).toBeInTheDocument();
+            // expect(notification1).toBeInTheDocument();
+            // expect(notification2).toBeInTheDocument();
         });
     });
 
@@ -72,17 +72,12 @@ describe('Dashboard Component', () => {
     });
 
     test('returns the right object when passing the state', () => {
-        const state = fromJS({
-            ui: {
-                isUserLoggedIn: true,
-                isNotificationDrawerVisible: false,
-            },
-        });
+        const state = rootReducer(undefined, { type: '@@INIT' });
 
         const props = mapStateToProps(state);
 
         expect(props).toEqual({
-            isLoggedIn: true,
+            isLoggedIn: false,
             displayDrawer: false,
         });
     });
