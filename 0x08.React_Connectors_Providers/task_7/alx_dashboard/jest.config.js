@@ -1,0 +1,18 @@
+export default {
+  collectCoverage: true,
+  collectCoverageFrom: ["src/**/*.{js,jsx}"],
+  coverageDirectory: "coverage",
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  transform: {
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png)$": "<rootDir>/src/fileMock.js",
+  },
+  testEnvironmentOptions: {
+    node: {
+      increaseMemoryLimit: true,
+    },
+  },
+};
