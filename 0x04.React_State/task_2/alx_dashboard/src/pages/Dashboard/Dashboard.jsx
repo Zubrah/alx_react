@@ -183,14 +183,14 @@ class Dashboard extends Component {
     static propTypes = {
         //isLoggedIn: PropTypes.bool,
         displayDrawer: PropTypes.bool,
-        logOut: PropTypes.func,
+        //logOut: PropTypes.func,
     }
 
     //
     static defaultProps = {
         //isLoggedIn: true,
         displayDrawer: false,
-        LogOut: () => { },
+        //LogOut: () => { },
     }
 
     componentDidMount() {

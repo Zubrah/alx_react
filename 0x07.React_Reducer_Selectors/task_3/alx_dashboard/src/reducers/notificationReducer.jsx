@@ -1,4 +1,3 @@
-// notificationReducer.js
 import { MARK_AS_READ, SET_TYPE_FILTER, FETCH_NOTIFICATIONS_SUCCESS } from '../actions/notificationActionTypes';
 
 const initialState = {

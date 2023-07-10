@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     Notifications: {
         position: 'relative',
         border: '1px dotted black',
+
         padding: '10px',
         bottom: '0',
         right: '10px',
@@ -163,7 +164,7 @@ class Notifications extends PureComponent {
 
 
 const mapStateToProps = (state) => ({
-    notifications: state.notifications.get('notifications'),
+    notifications: state.notifications.notifications
 });
 
 const mapDispatchToProps = (dispatch) => ({

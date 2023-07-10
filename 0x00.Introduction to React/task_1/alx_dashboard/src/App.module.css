@@ -83,7 +83,7 @@ body {
     display: flex;
     font-size: 1.5rem;
     font-weight: normal;
-    margin-top: 300px;
+    margin-top: 400px;
     margin-right: 120px;
     margin-left: 120px;
     
@@ -105,7 +105,9 @@ body {
   }
   
   .button {
-    min-width: 300px;
+    min-width: 150px;
+    align-items: center;
+    justify-content: center;
     min-height: 60px;
     font-family: 'Nunito', sans-serif;
     font-size: 22px;
@@ -191,7 +193,7 @@ body {
     background-color: whitesmoke;
     padding:1rem;
     border-top: 1px solid #ccc;
-    margin-top: 300px;
+    margin-top: 480px;
   }
 
   .app-footer p {

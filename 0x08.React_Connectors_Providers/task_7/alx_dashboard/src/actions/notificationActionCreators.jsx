@@ -2,6 +2,10 @@ import { MARK_AS_READ, SET_TYPE_FILTER, FETCH_NOTIFICATIONS_SUCCESS, SET_LOADING
 import { bindActionCreators } from 'redux';
 
 
+export const markAsRead = (index) => ({
+    type: MARK_AS_READ,
+    index,
+});
 
 export const setNotificationFilter = (filter) => ({
     type: SET_TYPE_FILTER,
@@ -20,7 +24,7 @@ export const setLoadingState = (isLoading) => ({
 
 export const setNotifications = (notifications) => ({
     type: SET_NOTIFICATIONS,
-    notifications,
+    data: notifications,
 });
 
 export const fetchNotifications = () => {
@@ -30,7 +34,8 @@ export const fetchNotifications = () => {
         fetch('../../dist/notifications.json')
             .then((response) => response.json())
             .then((data) => {
-                dispatch(setNotifications(data));
+                const notificationsArray = Array.from(data);
+                dispatch(setNotifications(notificationsArray));
                 dispatch(setLoadingState(false));
             })
             .catch((error) => {

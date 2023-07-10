@@ -1,4 +1,4 @@
-import { rootReducer } from './rootReducer';
+import rootReducer from './rootReducer';
 
 describe('Root Reducer', () => {
     test('should return the initial state', () => {

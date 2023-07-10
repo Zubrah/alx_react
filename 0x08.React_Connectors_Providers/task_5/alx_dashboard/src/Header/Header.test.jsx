@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import Header from './Header';
 
+// Create a mock Redux store
 const mockStore = configureStore([]);
 
 describe('Header', () => {

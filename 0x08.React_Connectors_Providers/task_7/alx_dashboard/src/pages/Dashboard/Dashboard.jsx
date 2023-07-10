@@ -144,7 +144,7 @@ class Dashboard extends Component {
                                 {isLoggedIn && <p>Welcome {user.email}!</p>}
                             </div>
                             <div>
-                                {!isLoggedIn && <Login />}
+                                {!isLoggedIn && <Login logIn={this.props.logIn} />}
                                 {isLoggedIn && (
                                     <React.Fragment>
                                         <BodySectionWithMarginBottom title="Course list" className="course-list">
@@ -183,11 +183,15 @@ Dashboard.defaultProps = {
 const mapStateToProps = (state) => ({
     isLoggedIn: state.ui.isNotificationDrawerVisible,
     user: state.user,
+    error: state.error,
 });
 
 const mapDispatchToProps = {
     displayNotificationDrawer,
     hideNotificationDrawer,
+    logIn: loginRequest,
+
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

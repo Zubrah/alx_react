@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-//import styles from './Dashboard.module.css';
-import { StyleSheet, css } from 'aphrodite';
-import { getLatestNotification } from '../../utils';
+import { connect } from 'react-redux';
+import { displayNotificationDrawer, hideNotificationDrawer, loginRequest } from '../../actions/uiActionCreators';
 import Notifications from '../../Notifications/Notifications';
 import logo from '../../assets/ALX+PNG.png';
-//import Header from '../../Header/header';
 import Login from '../../Login/Login';
 import Footer from '../../Footer/Footer';
 import CourseList from '../../CourseList/CourseList';
@@ -14,16 +12,9 @@ import BodySection from '../../BodySection/BodySection';
 import WithLogging from '../../HOC/WithLogging';
 import backgroundImage from '../../assets/Learn.jpg';
 import DashboardContext from './DashboardContext';
-import { connect } from 'react-redux';
-import { displayNotificationDrawer, hideNotificationDrawer, loginRequest } from '../../actions/uiActionCreators';
 
-
-
-
-
-
-// CSS for Dashboard using aphrodite;;;
-const styles = StyleSheet.create({
+// CSS for Dashboard using plain styles
+const styles = {
     body: {
         margin: 0,
         padding: 0,
@@ -64,32 +55,23 @@ const styles = StyleSheet.create({
             justifyContent: 'space-between',
         },
     },
-
-
     logo: {
         '@media (max-width: 900px)': {
             width: '100px',
             height: '100px',
             borderRadius: '50%',
-            //marginRight: '20px',
             marginLeft: '20px',
             marginBottom: '20px',
             position: 'relative',
-        }
+        },
     },
-
-
     h1: {
-
         '@media (max-width: 900px)': {
             fontSize: '1.5rem',
             fontWeight: 'bold',
             marginLeft: '160px',
             width: '300px',
-
-
-
-        }
+        },
     },
     footer: {
         position: 'absolute',
@@ -102,8 +84,7 @@ const styles = StyleSheet.create({
         '@media (max-width: 900px)': {
             position: 'relative',
             width: '98.7%',
-        }
-
+        },
     },
     menuItem: {
         display: 'flex',
@@ -121,299 +102,106 @@ const styles = StyleSheet.create({
             animationName: {
                 '0%': {
                     transform: 'translateY(0px)',
-                    opacity: '0.5'
+                    opacity: '0.5',
                 },
                 '50%': {
                     transform: 'translateY(-5px)',
                 },
                 '100%': {
-                    transform: 'translateY(5px)',
-                    opacity: 1,
+                    transform: 'translateY(0px)',
+                    opacity: '1',
                 },
             },
             animationDuration: '1s',
-            animationIterationCount: 3,
+            animationIterationCount: 'infinite',
         },
-        '@media (max-width: 900px)': {
-            display: 'flex',
-            marginTop: '20px',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-end',
-            height: '200px',
-            marginLeft: 0,
-            marginRight: '10px',
-            position: 'relative',
-            width: '140px',
-            border: 'none',
-
-        }
     },
-    logoutSection: {
-        display: 'flex',
-        flexDirection: 'row',
-        marginTop: 0,
-        position: 'relative',
-        cursor: 'pointer',
-        alignItems: 'end',
-        justifyContent: 'flex-end',
-        height: 2,
-        width: '900px',
-        marginRight: 30,
-        fontWeight: 'bold',
-    },
-    email: {
-        color: 'blue',
-        display: 'flex'
-    },
-    logout: {
-        color: 'red',
-        display: 'flex',
-        position: 'relative',
-        cursor: 'pointer',
-    }
+};
 
-});
-
-
-
-class Dashboard extends Component {
-    //static contextType = DashboardContext;
-
-    //Adding constructors
+export class Dashboard extends Component {
     constructor(props) {
         super(props);
-        this.handleKeyDown = this.handleKeyDown.bind(this);
-        this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
-        //this.handleNotificationClick = this.handleNotificationClick.bind(this);
-
-        //Display drawer state to show Notifications
-        this.state = {
-            showNotifications: false,
-            listNotifications: [
-                { id: 1, type: 'default', value: 'New course available' },
-                { id: 2, type: 'urgent', value: 'New resume available' },
-                { id: 3, type: 'urgent', html: { __html: getLatestNotification() } },
-            ],
-            user: {
-                email: '',
-                password: '',
-                isLoggedIn: false
-            },
-
-
-
-
-
-
-
-            // User object Logout function
-            logOut: () => {
-                this.setState((prevState) => ({
-                    user: {
-                        ...prevState.user,
-                        isLoggedIn: false
-                    }
-
-                }));
-            }
-        }
-    }
-
-
-    // Adding static props
-    static propTypes = {
-        displayDrawer: PropTypes.bool,
-        displayNotificationDrawer: PropTypes.func.isRequired,
-        hideNotificationDrawer: PropTypes.func.isRequired,
-        logIn: PropTypes.func.isRequired,
-        //logout: PropTypes.func.isRequired,
-
-    }
-
-    //deafult props
-    static defaultProps = {
-        displayDrawer: false,
-
+        this.state = {};
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', this.handleKeyDown);
+        const { displayNotificationDrawer } = this.props;
+        displayNotificationDrawer();
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleKeyDown);
+        const { hideNotificationDrawer } = this.props;
+        hideNotificationDrawer();
     }
 
-    handleKeyDown(event) {
-        const { ctrlKey, key } = event;
-        if (ctrlKey && key === 'h') {
-            alert('Logging you out');
-
-        }
+    handleLogout(event) {
+        event.preventDefault();
+        const { history } = this.props;
+        history.push('/');
     }
-
-    listCourses = [
-        { id: 1, name: 'ES6', credit: 60 },
-        { id: 2, name: 'Webpack', credit: 20 },
-        { id: 3, name: 'React', credit: 40 }
-    ];
-
-
-    markNotificationAsRead(id) {
-        const updatedNotifications = this.state.listNotifications.filter(
-            (listNotifications) => listNotifications.id !== id
-        );
-        this.setState({ listNotifications: updatedNotifications });
-    }
-
-
-
-
-    handleNotifications = () => {
-
-        const { displayNotificationDrawer, hideNotificationDrawer } = this.props;
-        if (this.state.showNotifications) {
-            hideNotificationDrawer();
-            this.setState((prevState) => ({
-                showNotifications: !prevState.showNotifications,
-            }));
-        } else {
-            displayNotificationDrawer();
-            this.setState((prevState) => ({
-                showNotifications: !prevState.showNotifications,
-            }));
-        }
-
-    };
-
-    // Login function
-    logIn = (email, password) => {
-
-        //this.props.logIn(email, password);
-        this.setState({
-            user: {
-                email: email,
-                password: password,
-                isLoggedIn: true,
-            },
-        })
-    };
-
-    // LogOut function
-    logOut = () => {
-        this.setState({
-            user: {
-                email: '',
-                password: '',
-                isLoggedIn: false,
-            },
-        });
-    };
-
-
-
-
 
     render() {
-        //const { isLoggedIn } = this.props;
-        const CourseListWithLogging = WithLogging(CourseList);
-        const LoginWithLogging = WithLogging(Login);
-        const { showNotifications, user, listNotifications, displayDrawer } = this.state;
-        const { login } = this.props;
-        const { logOut } = this.context;
-
-
-
-
+        const { isLoggedIn } = this.props;
+        const { user } = this.context;
         return (
-
-            <DashboardContext.Provider value={{ user, logOut: this.logOut }}>
-                <div className={css(styles.body)}>
-                    <div className={css(styles.container)}>
-                        <div className={css(styles.column1)}></div>
-                        <div className={css(styles.column2)}>
-                            {/* Notification Section Here!! */}
-                            <div className={css(styles.header)}>
-                                {/* Header Section */}
-                                <div className={css(styles.logo)}>
-                                    {/* Insert an image */}
-                                    <img src={logo} className={css(styles.logo)} alt='logo' />
-                                </div>
-                                <h1 className={css(styles.h1)}>School dashboard</h1>
-                                <div>
-
-                                    <div className={css(styles.menuItem)}
-                                        onClick={this.handleNotifications}
-
-                                    >Your notifications</div>
-                                    {showNotifications && <Notifications
-                                        displayDrawer={displayDrawer}
-                                        notifications={listNotifications}
-                                        handleNotifications={this.handleNotifications}
-                                        markNotificationAsRead={this.markNotificationAsRead} />}
-
-
-                                </div>
-
+            <React.Fragment>
+                <Notifications />
+                <div style={styles.body}>
+                    <div style={styles.container}>
+                        <div style={styles.column1} />
+                        <div style={styles.column2}>
+                            <div style={styles.header}>
+                                <img src={logo} alt="logo" style={styles.logo} />
+                                <h1 style={styles.h1}>Course dashboard</h1>
+                                {isLoggedIn && <p>Welcome {user.email}!</p>}
                             </div>
-                            {/* // Create a Context API */}
-                            {user.isLoggedIn && (
-                                <div className={css(styles.logoutSection)}
-                                    id="logoutSection"
-                                    onClick={() => this.logOut()}>
-                                    <span className={css(styles.email)}
-                                    >
-                                        Welcome , {user.email} </span>
-                                    <span
-                                        className={css(styles.logout)}
-                                        onClick={() => logOut()}
-                                    >
-                                        (logout)
-                                    </span>
-                                </div>
-                            )}
-
-                            {/* Body  Section */}
-                            {user.isLoggedIn ?
-                                <BodySectionWithMarginBottom title="Course list">
-                                    <CourseListWithLogging listCourses={this.listCourses} user={user} logOut={this.logOut} />
-                                </BodySectionWithMarginBottom> :
-                                <BodySectionWithMarginBottom title="Log in Access Full Dashboard">
-                                    <LoginWithLogging logIn={this.logIn} />
-                                </BodySectionWithMarginBottom>}
-
-                            <BodySection title="News from the School">
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt, incidunt quibusdam laborum earum tempore impedit quis voluptatibus, quo obcaecati cumque necessitatibus rem accusamus nisi laudantium est? Eos quibusdam necessitatibus officiis.</p>
-                            </BodySection>
-
-                            {/* Footer Section */}
-                            <Footer />
+                            <div>
+                                {!isLoggedIn && <Login />}
+                                {isLoggedIn && (
+                                    <React.Fragment>
+                                        <BodySectionWithMarginBottom title="Course list" className="course-list">
+                                            <CourseList />
+                                        </BodySectionWithMarginBottom>
+                                        <BodySection title="News from the School" className="body-section">
+                                            <p>Some news</p>
+                                        </BodySection>
+                                    </React.Fragment>
+                                )}
+                            </div>
+                            <div style={styles.footer}>
+                                <Footer />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </DashboardContext.Provider>
+            </React.Fragment>
         );
-
     }
 }
 
-//Connect with mapStateToProps
-export const mapStateToProps = (state) => {
-    return {
-        user: state.getIn(['ui', 'user']),
-        isLoggedIn: state.getIn(['ui', 'isUserLoggedIn']),
-        displayDrawer: state.getIn(['ui', 'isNotificationDrawerVisible']),
-    };
+Dashboard.propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired,
+    displayNotificationDrawer: PropTypes.func.isRequired,
+    hideNotificationDrawer: PropTypes.func.isRequired,
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+    }).isRequired,
 };
 
+Dashboard.defaultProps = {
+    isLoggedIn: false,
+};
 
-export const mapDispatchToProps = {
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.ui.isNotificationDrawerVisible,
+});
+
+const mapDispatchToProps = {
     displayNotificationDrawer,
     hideNotificationDrawer,
-    logIn: loginRequest,
-
 };
 
+const ConnectedDashboard = connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default WithLogging(ConnectedDashboard);

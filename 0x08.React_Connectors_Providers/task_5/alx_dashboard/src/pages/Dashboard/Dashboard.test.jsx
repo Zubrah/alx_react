@@ -3,13 +3,22 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { fromJS } from 'immutable';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from '../../reducers/rootReducer'; // Import the root reducer
+import rootReducer from '../../reducers/rootReducer'; // Import the root reducer
 import Dashboard, { mapStateToProps } from './Dashboard';
 
 // Create a mock store
 const store = configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            thunk: {
+                extraArgument: {},
+            },
+            serializableCheck: false,
+            immutableStateInvariant: true,
+        }),
 });
+
 
 describe('Dashboard Component', () => {
     beforeEach(() => {

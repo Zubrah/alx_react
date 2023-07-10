@@ -27,10 +27,11 @@ const uiReducer = (state = initialState, action) => {
         case HIDE_NOTIFICATION_DRAWER:
             return state.set('isNotificationDrawerVisible', false);
         case LOGIN_SUCCESS:
-            return state.set('isUserLoggedIn', true);
+            return state.set('isUserLoggedIn', true).set('user', action.user.toJS());
         case LOGIN_FAILURE:
+            return state.set('isUserLoggedIn', false).set('user', Map());
         case LOGOUT:
-            return state.set('isUserLoggedIn', false);
+            return state.set('isUserLoggedIn', false).set('user', Map());
         default:
             return state;
     }

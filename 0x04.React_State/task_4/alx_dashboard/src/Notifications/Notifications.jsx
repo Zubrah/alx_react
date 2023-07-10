@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { StyleSheet, css } from "aphrodite";
 import CloseButton from '../assets/close-icon.jpeg';
 import { getLatestNotification } from '../utils';
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Notifications extends Component {
+class Notifications extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
